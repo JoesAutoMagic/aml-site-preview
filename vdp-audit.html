@@ -265,40 +265,24 @@ nav {
 /* Products dropdown */
 .nav-dropdown { position: relative; }
 .nav-dropdown-trigger {
-  cursor: pointer;
-  display: flex; align-items: center; gap: 0.3rem;
+  cursor: pointer; display: flex; align-items: center; gap: 0.3rem;
+  font-size: var(--text-caption); font-weight: var(--weight-medium); color: var(--text-body);
 }
-.nav-dropdown-trigger::after {
-  content: '▾'; font-size: 0.65rem;
-}
+.nav-dropdown-trigger::after { content: '▾'; font-size: 0.65rem; }
 .nav-dropdown-menu {
-  display: none;
-  position: absolute; top: calc(100% + 0.75rem); left: -1rem;
-  background: white;
-  border: var(--border-default);
-  border-radius: var(--radius-lg);
-  padding: var(--space-sm) 0;
-  min-width: 200px;
-  box-shadow: var(--shadow-md);
+  display: none; position: absolute; top: 100%; left: -1rem; padding-top: 0.5rem;
   z-index: 100;
+}
+.nav-dropdown-menu-inner {
+  background: white; border: var(--border-default); border-radius: var(--radius-lg);
+  padding: var(--space-sm) 0; min-width: 200px; box-shadow: var(--shadow-md);
 }
 .nav-dropdown:hover .nav-dropdown-menu { display: block; }
 .nav-dropdown-menu a {
   display: flex; align-items: center; gap: var(--space-sm);
-  padding: 0.6rem 1.25rem;
-  font-size: var(--text-body-sm);
+  padding: 0.6rem 1.25rem; font-size: var(--text-body-sm);
 }
 .nav-dropdown-menu a:hover { background: var(--surface-off-white); }
-.dropdown-badge {
-  font-size: var(--text-nano);
-  font-weight: var(--weight-bold);
-  padding: 0.15rem 0.5rem;
-  border-radius: var(--radius-full);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-}
-.badge-live { background: var(--green-bg); color: var(--green); }
-.badge-soon { background: var(--surface-off-white); color: var(--text-secondary); }
 
 /* =============================================
    BUTTONS
@@ -802,14 +786,15 @@ footer {
   <a href="index.html" class="nav-logo"><div class="logo-mark">A</div> AutoMagic Labs</a>
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <div class="nav-dropdown">
+        <div class="nav-dropdown">
       <a class="nav-dropdown-trigger">Products</a>
-      <div class="nav-dropdown-menu">
-        <a href="ths.html">THS <span class="dropdown-badge badge-soon">New</span></a>
-        <a href="vdp-audit.html">VDP Audit <span class="dropdown-badge badge-live">Live</span></a>
+      <div class="nav-dropdown-menu"><div class="nav-dropdown-menu-inner">
+        <a href="vdp-audit.html">VDP Audit</a>
         <a href="vdp-boost.html">VDP Boost</a>
-        <a href="turnsignal.html">TurnSignal™ <span class="dropdown-badge badge-soon">Coming Soon</span></a>
-      </div>
+        <a href="turnsignal.html">TurnSignal&#8482;</a>
+        <a href="ths.html">THS</a>
+      </div></div>
+    </div>
     </div>
     <a href="profit-wreck.html" class="nav-cta-link">Profit Wreck</a>
     <a href="team.html">Team</a>
@@ -949,7 +934,9 @@ footer {
   <div class="final-cta-sub">Or email <a href="mailto:vdpaudit@automagiclabs.ai" style="color: var(--accent);">vdpaudit@automagiclabs.ai</a></div>
 </section>
 
-<footer>&copy; 2026 AutoMagic Labs. All rights reserved. &nbsp;|&nbsp; <a href="https://www.automagiclabs.ai" style="color: var(--accent);">automagiclabs.ai</a></footer>
+<footer>
+  <p>&copy; 2026 AutoMagic Labs. All rights reserved. &nbsp;|&nbsp; <a href="https://www.automagiclabs.ai" style="color: var(--accent);">automagiclabs.ai</a></p>
+</footer>
 
 </body>
 </html>
