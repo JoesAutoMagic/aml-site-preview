@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner With Us — AutoMagic Labs</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/*
+ * AML DESIGN TOKENS v1.0
+ * ========================
+ * Single source of truth for all visual styling.
+ * James: edit THIS file to restyle the entire site.
+ * No component or copy changes needed.
+ *
+ * Direction: Option B — High-Contrast Editorial
+ * Black & white base + ONE accent color.
+ */
+
+:root {
+  /* ——— COLOR: SURFACES ——— */
+  --surface-white:      #FAFAFA;
+  --surface-off-white:  #F2F0ED;
+  --surface-light:      #E8E5E0;
+  --surface-dark:       #111111;
+
+  /* ——— COLOR: TEXT ——— */
+  --text-primary:       #111111;
+  --text-body:          #3A3632;
+  --text-secondary:     #9A9590;
+  --text-inverse:       #FAFAFA;
+  --text-inverse-muted: #C5C0BB;
+
+  /* ——— COLOR: ACCENT (the ONE color) ——— */
+  --accent:             #D4582A;
+  --accent-hover:       #A8421F;
+  --accent-light:       #F0D8CC;
+  --accent-bg:          #FEE8E0;
+
+  /* ——— COLOR: SEMANTIC ——— */
+  --green:              #1A7A2B;
+  --green-bg:           #E6F9E8;
+  --yellow:             #8B6914;
+  --yellow-bg:          #FEF0D0;
+  --blue:               #1A4DA8;
+  --blue-bg:            #E0ECFE;
+  --purple:             #6B21A8;
+  --purple-bg:          #F0E6FE;
+
+  /* ——— COLOR: DARK SECTIONS ——— */
+  --dark-border:        #333333;
+  --dark-surface:       #1A1918;
+  --dark-text-muted:    #888888;
+  --dark-text-subtle:   #666666;
+
+  /* ——— TYPOGRAPHY ——— */
+  --font-heading:       'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body:          'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* Heading scale */
+  --text-hero:          3.5rem;     /* 56px — page hero headlines */
+  --text-h1:            2.75rem;    /* 44px — section heroes */
+  --text-h2:            2.25rem;    /* 36px — section headers */
+  --text-h3:            1.5rem;     /* 24px — card/subsection headers */
+  --text-h4:            1.15rem;    /* 18.4px — small headers */
+  --text-body-lg:       1.2rem;     /* 19.2px — hero subtext */
+  --text-body:          1rem;       /* 16px — default body */
+  --text-body-sm:       0.9rem;     /* 14.4px — card body */
+  --text-caption:       0.8rem;     /* 12.8px — labels, sources */
+  --text-eyebrow:       0.75rem;    /* 12px — section eyebrows */
+  --text-micro:         0.7rem;     /* 11.2px — badges, tags */
+  --text-nano:          0.65rem;    /* 10.4px — tiny labels */
+
+  /* Weight */
+  --weight-regular:     400;
+  --weight-medium:      500;
+  --weight-semibold:    600;
+  --weight-bold:        700;
+
+  /* Line height */
+  --leading-tight:      1.08;
+  --leading-snug:       1.3;
+  --leading-normal:     1.6;
+  --leading-relaxed:    1.7;
+
+  /* Letter spacing */
+  --tracking-tight:     -0.03em;
+  --tracking-snug:      -0.02em;
+  --tracking-normal:    0;
+  --tracking-wide:      0.05em;
+  --tracking-wider:     0.08em;
+  --tracking-widest:    0.15em;
+
+  /* ——— SPACING ——— */
+  --space-xs:           0.25rem;    /* 4px */
+  --space-sm:           0.5rem;     /* 8px */
+  --space-md:           1rem;       /* 16px */
+  --space-lg:           1.5rem;     /* 24px */
+  --space-xl:           2rem;       /* 32px */
+  --space-2xl:          3rem;       /* 48px */
+  --space-3xl:          4rem;       /* 64px */
+  --space-4xl:          5rem;       /* 80px */
+
+  /* ——— LAYOUT ——— */
+  --max-width:          1200px;
+  --max-width-narrow:   800px;
+  --max-width-reading:  600px;
+  --page-padding:       2rem;
+  --section-padding:    5rem;
+
+  /* ——— BORDERS ——— */
+  --radius-sm:          4px;
+  --radius-md:          8px;
+  --radius-lg:          12px;
+  --radius-xl:          16px;
+  --radius-full:        100px;
+  --border-default:     1px solid var(--surface-light);
+  --border-dark:        1px solid var(--dark-border);
+  --border-accent:      2px solid var(--accent);
+
+  /* ——— SHADOWS ——— */
+  --shadow-sm:          0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:          0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:          0 12px 32px rgba(0,0,0,0.12);
+  --shadow-xl:          0 24px 64px rgba(0,0,0,0.15);
+
+  /* ——— TRANSITIONS ——— */
+  --transition-fast:    0.15s ease;
+  --transition-normal:  0.2s ease;
+  --transition-slow:    0.3s ease;
+
+  /* ——— BANNER ——— */
+  --banner-bg:          var(--surface-dark);
+  --banner-text:        var(--text-inverse-muted);
+  --banner-cta-bg:      var(--accent);
+  --banner-cta-text:    var(--text-inverse);
+  --banner-height:      44px;
+}
+
+/* ——— RESPONSIVE OVERRIDES ——— */
+@media (max-width: 900px) {
+  :root {
+    --text-hero:        2.5rem;
+    --text-h1:          2rem;
+    --text-h2:          1.75rem;
+    --section-padding:  3.5rem;
+    --page-padding:     1.5rem;
+  }
+}
+@media (max-width: 600px) {
+  :root {
+    --text-hero:        2rem;
+    --text-h1:          1.75rem;
+    --text-h2:          1.5rem;
+    --section-padding:  2.5rem;
+    --page-padding:     1rem;
+  }
+}
+/*
+ * AML SHARED STYLES v1.0
+ * =======================
+ * All reusable styles across every page.
+ * Imports design-tokens.css for variables.
+ *
+ * James: This + design-tokens.css = the entire visual system.
+ * Edit design-tokens.css to change colors/fonts/spacing.
+ * Edit THIS file to change component patterns (nav, buttons, cards, etc).
+ * Page-specific styles stay in each HTML file (minimal).
+ */
+
+
+
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--surface-white);
+  color: var(--text-primary);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  margin-top: var(--banner-height);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* =============================================
+   PERSISTENT BANNER — appears on every page
+   ============================================= */
+
+.site-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--banner-height);
+  background: var(--banner-bg);
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  font-size: var(--text-body-sm);
+  color: var(--banner-text);
+}
+.site-banner strong {
+  color: var(--text-inverse);
+  font-weight: var(--weight-semibold);
+}
+.banner-cta {
+  background: var(--banner-cta-bg);
+  color: var(--banner-cta-text);
+  font-size: var(--text-micro);
+  font-weight: var(--weight-bold);
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-full);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transition: background var(--transition-normal);
+}
+.banner-cta:hover { background: var(--accent-hover); }
+
+/* =============================================
+   NAV — appears on every page
+   ============================================= */
+
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem var(--page-padding);
+  max-width: var(--max-width); margin: 0 auto;
+  border-bottom: var(--border-default);
+}
+.nav-logo {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: 1.25rem;
+  letter-spacing: var(--tracking-snug);
+  display: flex; align-items: center; gap: var(--space-sm);
+}
+.logo-mark {
+  width: 28px; height: 28px;
+  background: var(--accent);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-weight: var(--weight-bold);
+  font-size: 0.75rem;
+}
+.nav-links {
+  display: flex; gap: var(--space-xl); align-items: center;
+}
+.nav-links a {
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  color: var(--text-body);
+  transition: color var(--transition-normal);
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a.active {
+  color: var(--accent);
+  font-weight: var(--weight-semibold);
+}
+.nav-cta-link {
+  font-weight: var(--weight-semibold) !important;
+  color: var(--accent) !important;
+}
+
+/* Products dropdown */
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger {
+  cursor: pointer;
+  display: flex; align-items: center; gap: 0.3rem;
+}
+.nav-dropdown-trigger::after {
+  content: '▾'; font-size: 0.65rem;
+}
+.nav-dropdown-menu {
+  display: none;
+  position: absolute; top: calc(100% + 0.75rem); left: -1rem;
+  background: white;
+  border: var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-sm) 0;
+  min-width: 200px;
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+}
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu a {
+  display: flex; align-items: center; gap: var(--space-sm);
+  padding: 0.6rem 1.25rem;
+  font-size: var(--text-body-sm);
+}
+.nav-dropdown-menu a:hover { background: var(--surface-off-white); }
+.dropdown-badge {
+  font-size: var(--text-nano);
+  font-weight: var(--weight-bold);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+.badge-live { background: var(--green-bg); color: var(--green); }
+.badge-soon { background: var(--surface-off-white); color: var(--text-secondary); }
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  background: var(--accent);
+  color: white;
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-body);
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-normal);
+  border: none; cursor: pointer;
+  font-family: var(--font-body);
+}
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary-lg { font-size: 1.15rem; padding: 1rem 2.25rem; }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-body);
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--text-primary);
+  color: var(--text-primary);
+  transition: all var(--transition-normal);
+  background: transparent; cursor: pointer;
+  font-family: var(--font-body);
+}
+.btn-secondary:hover { background: var(--text-primary); color: white; }
+
+/* =============================================
+   SECTION PATTERNS
+   ============================================= */
+
+.section-eyebrow {
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+/* Light section */
+.section-light {
+  padding: var(--section-padding) var(--page-padding);
+  background: var(--surface-white);
+}
+
+/* Off-white section */
+.section-alt {
+  padding: var(--section-padding) var(--page-padding);
+  background: var(--surface-off-white);
+}
+
+/* Dark section */
+.section-dark {
+  padding: var(--section-padding) var(--page-padding);
+  background: var(--surface-dark);
+  color: var(--text-inverse);
+}
+.section-dark .section-eyebrow { color: var(--accent); }
+.section-dark h2 { color: var(--text-inverse); }
+.section-dark p { color: var(--text-inverse-muted); }
+.section-dark strong { color: var(--text-inverse); }
+.section-dark em { font-style: normal; color: var(--accent); }
+
+/* Container */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.container-narrow {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+}
+
+/* Section headings */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-snug);
+  margin-bottom: var(--space-sm);
+}
+.section-title em { font-style: normal; color: var(--accent); }
+
+.section-intro {
+  font-size: 1.1rem;
+  color: var(--text-body);
+  max-width: var(--max-width-reading);
+  margin-bottom: var(--space-2xl);
+}
+.section-dark .section-intro { color: var(--text-inverse-muted); }
+
+/* =============================================
+   CARDS
+   ============================================= */
+
+.card {
+  background: white;
+  border: var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: border-color var(--transition-normal);
+}
+.card:hover { border-color: var(--text-secondary); }
+
+.card-dark {
+  border: var(--border-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+/* =============================================
+   BADGES
+   ============================================= */
+
+.badge {
+  display: inline-block;
+  font-size: var(--text-nano);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-md);
+}
+.badge-green { background: var(--green-bg); color: var(--green); }
+.badge-blue { background: var(--blue-bg); color: var(--blue); }
+.badge-purple { background: var(--purple-bg); color: var(--purple); }
+.badge-yellow { background: var(--yellow-bg); color: var(--yellow); }
+.badge-accent { background: var(--accent); color: white; }
+
+.live-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--green-bg); color: var(--green);
+  font-size: var(--text-micro); font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wider); text-transform: uppercase;
+  padding: 0.3rem 0.75rem; border-radius: var(--radius-full);
+  margin-bottom: var(--space-md);
+}
+.live-badge::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--green); border-radius: 50%;
+}
+
+/* =============================================
+   PROOF / STATS
+   ============================================= */
+
+.proof-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl); margin-bottom: var(--space-2xl);
+}
+.proof-stat {
+  text-align: center; padding: 2.5rem var(--space-lg);
+  border: var(--border-dark); border-radius: var(--radius-lg);
+}
+.proof-stat-number {
+  font-family: var(--font-heading); font-size: 3.5rem;
+  font-weight: var(--weight-bold); color: var(--accent);
+  line-height: 1; margin-bottom: var(--space-sm);
+}
+.proof-stat-context {
+  font-size: var(--text-body-sm); color: var(--text-inverse-muted);
+}
+.proof-stat-source {
+  font-size: var(--text-eyebrow); color: var(--text-secondary);
+  margin-top: var(--space-sm); text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Light variant */
+.proof-stat-light {
+  text-align: center; padding: var(--space-lg);
+  border: var(--border-default); border-radius: var(--radius-lg);
+  background: white;
+}
+.proof-stat-light .proof-stat-number { font-size: 2.5rem; }
+.proof-stat-light .proof-stat-context,
+.proof-stat-light .proof-stat-label {
+  font-size: var(--text-caption); color: var(--text-body); line-height: 1.4;
+}
+
+/* =============================================
+   TESTIMONIAL
+   ============================================= */
+
+.testimonial {
+  max-width: 700px; margin: 0 auto;
+  padding: 2.5rem;
+  border-radius: var(--radius-xl);
+  border-left: 4px solid var(--accent);
+}
+.testimonial-dark {
+  background: var(--dark-surface);
+  text-align: center;
+}
+.testimonial-light {
+  background: white;
+}
+.testimonial blockquote {
+  font-size: var(--text-body-lg); font-style: italic;
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-md);
+}
+.testimonial-dark blockquote { color: var(--text-inverse-muted); }
+.testimonial-light blockquote { color: var(--text-body); }
+
+.testimonial cite {
+  font-style: normal; font-size: var(--text-body-sm);
+  font-weight: var(--weight-semibold);
+}
+.testimonial-dark cite { color: var(--text-inverse); }
+.testimonial-light cite { color: var(--text-primary); }
+.testimonial cite span {
+  font-weight: var(--weight-regular);
+  color: var(--text-secondary);
+}
+
+/* =============================================
+   CREDENTIALS
+   ============================================= */
+
+.credentials {
+  display: flex; flex-wrap: wrap; gap: 0.75rem;
+  margin-top: var(--space-lg);
+}
+.credential {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: var(--text-caption); font-weight: var(--weight-semibold);
+  padding: 0.5rem 1rem; border: var(--border-default);
+  border-radius: var(--radius-full); background: white;
+  color: var(--text-body);
+}
+
+/* =============================================
+   BRAND TAGLINE (iterable component)
+   ============================================= */
+
+.brand-tagline {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  padding: 0.6rem 1.25rem;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent);
+}
+
+/* =============================================
+   TEAM CARDS
+   ============================================= */
+
+.team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
+.team-member {
+  background: white; border: var(--border-default);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+}
+.team-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--surface-light);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); font-weight: var(--weight-bold);
+  font-size: 1rem; color: var(--text-body);
+  margin-bottom: var(--space-md);
+}
+.team-member h3 {
+  font-family: var(--font-heading); font-size: 1rem;
+  font-weight: var(--weight-bold); margin-bottom: 0.15rem;
+}
+.team-role {
+  font-size: var(--text-caption); color: var(--accent);
+  font-weight: var(--weight-semibold); margin-bottom: 0.75rem;
+}
+.team-member p {
+  font-size: var(--text-caption); color: var(--text-body); line-height: 1.5;
+}
+
+/* =============================================
+   FORMS
+   ============================================= */
+
+.form-input {
+  padding: 0.9rem 1rem;
+  border: var(--border-default);
+  border-radius: var(--radius-md);
+  font-size: var(--text-body);
+  font-family: var(--font-body);
+  background: white;
+  width: 100%;
+  transition: border-color var(--transition-normal);
+}
+.form-input:focus {
+  outline: none; border-color: var(--accent);
+}
+
+/* =============================================
+   FAQ
+   ============================================= */
+
+.faq-item {
+  border-bottom: var(--border-default); padding: 1.25rem 0;
+}
+.faq-q {
+  font-family: var(--font-heading); font-weight: var(--weight-semibold);
+  font-size: 1.05rem; margin-bottom: var(--space-sm);
+  color: var(--text-primary);
+}
+.faq-a {
+  font-size: var(--text-body-sm); color: var(--text-body);
+  line-height: var(--leading-normal);
+}
+
+/* =============================================
+   FOOTER CTA — dark bottom CTA block
+   ============================================= */
+
+.footer-cta {
+  background: var(--surface-dark); color: var(--text-inverse);
+  padding: var(--section-padding) var(--page-padding); text-align: center;
+}
+.footer-cta h2 {
+  font-family: var(--font-heading); font-size: var(--text-h2);
+  font-weight: var(--weight-bold); margin-bottom: var(--space-md);
+}
+.footer-cta h2 em { font-style: normal; color: var(--accent); }
+.footer-cta p {
+  font-size: 1.1rem; color: var(--text-inverse-muted);
+  margin-bottom: var(--space-xl);
+  max-width: 500px; margin-left: auto; margin-right: auto;
+}
+.footer-cta-sub {
+  margin-top: var(--space-md); font-size: var(--text-caption);
+  color: var(--text-secondary);
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+
+footer {
+  padding: var(--space-xl); text-align: center;
+  font-size: var(--text-caption); color: var(--text-secondary);
+  border-top: var(--border-default);
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 900px) {
+  .proof-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .nav-links a:not(.nav-cta-link) { display: none; }
+  .site-banner { font-size: var(--text-micro); gap: var(--space-sm); }
+  .team-grid { grid-template-columns: 1fr; }
+  .proof-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+<style>
+  /* ============ HERO ============ */
+  .hero {
+    padding: 6rem var(--page-padding) var(--section-padding);
+    max-width: var(--max-width); margin: 0 auto;
+  }
+  .hero h1 {
+    font-family: var(--font-heading); font-size: var(--text-hero);
+    font-weight: var(--weight-bold); line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight); margin-bottom: var(--space-lg);
+  }
+  .hero-sub {
+    font-size: var(--text-body-lg); color: var(--text-body);
+    line-height: var(--leading-relaxed); max-width: 520px;
+  }
+
+  /* ============ WHY NOW ============ */
+  .why-now {
+    padding: var(--section-padding) var(--page-padding);
+    max-width: var(--max-width); margin: 0 auto;
+  }
+  .why-now h2 {
+    font-family: var(--font-heading); font-size: var(--text-h2);
+    font-weight: var(--weight-bold); letter-spacing: var(--tracking-snug);
+    margin-bottom: var(--space-xl);
+  }
+  .why-now-list {
+    list-style: none; margin-bottom: var(--space-xl);
+  }
+  .why-now-list li {
+    font-size: var(--text-body); color: var(--text-body); line-height: var(--leading-relaxed);
+    padding: var(--space-md) 0; margin-bottom: var(--space-md);
+  }
+  .why-now-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+  }
+  .stat-box {
+    text-align: center; padding: var(--space-xl);
+    background: var(--surface-off-white); border-radius: var(--radius-lg); border: var(--border-default);
+  }
+  .stat-number {
+    font-family: var(--font-heading); font-size: 2.5rem;
+    font-weight: var(--weight-bold); color: var(--accent); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-size: var(--text-caption); color: var(--text-body); text-transform: capitalize;
+  }
+
+  /* ============ NOT A WIDGET ============ */
+  .not-a-widget {
+    padding: var(--section-padding) var(--page-padding);
+    background: var(--surface-off-white);
+  }
+  .not-a-widget-inner {
+    max-width: var(--max-width); margin: 0 auto;
+  }
+  .not-a-widget h2 {
+    font-family: var(--font-heading); font-size: var(--text-h2);
+    font-weight: var(--weight-bold); letter-spacing: var(--tracking-snug);
+    margin-bottom: var(--space-lg);
+  }
+  .not-a-widget > p {
+    font-size: 1.05rem; color: var(--text-body); line-height: var(--leading-relaxed);
+    max-width: var(--max-width-reading); margin-bottom: var(--space-2xl);
+  }
+  .widget-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg);
+  }
+  .widget-stat-box {
+    text-align: center; padding: var(--space-xl);
+    background: white; border-radius: var(--radius-lg); border: var(--border-default);
+  }
+  .widget-stat-label {
+    font-family: var(--font-heading); font-weight: var(--weight-bold);
+    font-size: var(--text-body-sm); color: var(--text-primary); line-height: var(--leading-normal);
+  }
+
+  /* ============ PARTNER TYPES ============ */
+  .partner-types {
+    padding: var(--section-padding) var(--page-padding);
+    max-width: var(--max-width); margin: 0 auto;
+  }
+  .partner-types h2 {
+    font-family: var(--font-heading); font-size: var(--text-h2);
+    font-weight: var(--weight-bold); letter-spacing: var(--tracking-snug);
+    margin-bottom: var(--space-2xl);
+  }
+  .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+  .partner-card {
+    background: white; border: var(--border-default);
+    border-radius: var(--radius-lg); padding: var(--space-xl);
+  }
+  .partner-card h3 {
+    font-family: var(--font-heading); font-size: var(--text-h4);
+    font-weight: var(--weight-bold); margin-bottom: var(--space-md);
+  }
+  .partner-card p {
+    font-size: var(--text-body-sm); color: var(--text-body);
+    line-height: var(--leading-normal); margin-bottom: var(--space-md);
+  }
+  .partner-fit {
+    font-size: var(--text-caption); color: var(--text-secondary);
+    font-weight: var(--weight-semibold); text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+  .partner-fit-list {
+    margin-top: var(--space-sm);
+  }
+  .partner-fit-list span {
+    display: block; font-size: var(--text-body-sm); color: var(--text-body);
+    font-weight: normal; text-transform: none; letter-spacing: normal;
+    margin-top: 0.25rem;
+  }
+
+  /* ============ FOUNDER CREDENTIALS ============ */
+  .founder-creds {
+    padding: var(--section-padding) var(--page-padding);
+    background: var(--surface-off-white);
+  }
+  .founder-creds-inner {
+    max-width: var(--max-width); margin: 0 auto;
+  }
+  .founder-creds h2 {
+    font-family: var(--font-heading); font-size: var(--text-h2);
+    font-weight: var(--weight-bold); letter-spacing: var(--tracking-snug);
+    margin-bottom: var(--space-lg);
+  }
+  .founder-creds p {
+    font-size: var(--text-body); color: var(--text-body);
+    line-height: var(--leading-relaxed); margin-bottom: var(--space-lg);
+    max-width: var(--max-width-reading);
+  }
+
+  /* ============ CONTACT FORM ============ */
+  .contact-section {
+    padding: var(--section-padding) var(--page-padding);
+    max-width: var(--max-width-narrow); margin: 0 auto;
+  }
+  .contact-section h2 {
+    font-family: var(--font-heading); font-size: var(--text-h2);
+    font-weight: var(--weight-bold); letter-spacing: var(--tracking-snug);
+    margin-bottom: 0.5rem;
+  }
+  .contact-subtitle {
+    font-size: var(--text-body-lg); color: var(--text-body);
+    margin-bottom: var(--space-2xl);
+  }
+  .form-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+  }
+  .form-full { grid-column: 1 / -1; }
+  .form-group {
+    display: flex; flex-direction: column;
+  }
+  .form-group label {
+    font-weight: var(--weight-semibold); font-size: var(--text-caption);
+    color: var(--text-primary); margin-bottom: 0.5rem;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-family: var(--font-body); font-size: var(--text-body-sm);
+    padding: 0.75rem 1rem; border: var(--border-default); border-radius: var(--radius-md);
+    color: var(--text-primary); background: white;
+    transition: border-color var(--transition-normal);
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none; border-color: var(--accent);
+  }
+  .form-group textarea {
+    resize: vertical; min-height: 120px;
+  }
+  .form-group.checkbox {
+    flex-direction: row; align-items: center;
+  }
+  .form-group.checkbox input {
+    width: auto; margin-right: 0.5rem; margin-bottom: 0;
+  }
+  .form-group.checkbox label {
+    margin-bottom: 0;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .why-now-stats { grid-template-columns: 1fr; }
+    .widget-stats { grid-template-columns: 1fr; }
+    .partner-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== PERSISTENT BANNER ===== -->
+<div class="site-banner">
+  <span><strong>Your VDP has gaps.</strong> Find them — free, in under 5 minutes.</span>
+  <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="banner-cta">Audit My VDP →</a>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">A</div>
+    AutoMagic Labs
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <div class="nav-dropdown">
+      <span class="nav-dropdown-trigger">Products</span>
+      <div class="nav-dropdown-menu">
+        <a href="ths.html">THS <span class="dropdown-badge badge-soon">New</span></a>
+        <a href="vdp-audit.html">VDP Audit <span class="dropdown-badge badge-live">Live</span></a>
+        <a href="vdp-boost.html">VDP Boost</a>
+        <a href="turnsignal.html">TurnSignal™ <span class="dropdown-badge badge-soon">Coming Soon</span></a>
+      </div>
+    </div>
+    <a href="profit-wreck.html" class="nav-cta-link">Profit Wreck</a>
+    <a href="team.html">Team</a>
+    <a href="faq.html">FAQ</a>
+    <a href="partner.html">Partner With Us</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <span class="section-eyebrow">Strategic Partners & Investors</span>
+  <h1>The Merchandising Layer Is the Most Underleveraged Force in Automotive Sales.</h1>
+  <p class="hero-sub">We're looking for partners who see it too.</p>
+</section>
+
+<!-- ===== WHY NOW ===== -->
+<section class="why-now">
+  <h2>Why Now</h2>
+  <ul class="why-now-list">
+    <li>Modern vehicles are built in up to <strong>625,000 unique configurations per model year</strong>. The listing infrastructure hasn't kept up.</li>
+    <li>Shoppers spend <strong>93 days across 20 websites</strong>. They view an average of <strong>60 VDPs</strong>. They spend <strong>80% of VDP time on photos</strong>.</li>
+    <li>The dealer with the best VDP wins. Most dealers have no idea how bad their VDPs actually are.</li>
+  </ul>
+  <div class="why-now-stats">
+    <div class="stat-box">
+      <div class="stat-number">625k</div>
+      <div class="stat-label">Unique configurations per model year</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">93</div>
+      <div class="stat-label">Days across 20 websites</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">80%</div>
+      <div class="stat-label">Time spent on photos</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NOT A WIDGET ===== -->
+<section class="not-a-widget">
+  <div class="not-a-widget-inner">
+    <h2>Not a Widget</h2>
+    <p>AML's platform is built on proprietary IP: the <strong>Treasure Hunter Score™</strong>, an industry-first feature-scoring engine that ranks every installed vehicle attribute by shopper value. It powers a full rules-based merchandising product portfolio.</p>
+    <div class="widget-stats">
+      <div class="widget-stat-box">
+        <div class="widget-stat-label">Industry 1st</div>
+        <p style="font-size: var(--text-caption); color: var(--text-body); margin-top: 0.5rem;">No competitor scores by shopper value at VIN level</p>
+      </div>
+      <div class="widget-stat-box">
+        <div class="widget-stat-label">17 Data Fields</div>
+        <p style="font-size: var(--text-caption); color: var(--text-body); margin-top: 0.5rem;">Per vehicle audit</p>
+      </div>
+      <div class="widget-stat-box">
+        <div class="widget-stat-label">2-3x Conversion</div>
+        <p style="font-size: var(--text-caption); color: var(--text-body); margin-top: 0.5rem;">At pilot dealer</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARTNER TYPES ===== -->
+<section class="partner-types">
+  <h2>Partner Types</h2>
+  <div class="partner-grid">
+    <div class="partner-card">
+      <h3>Platform Partners</h3>
+      <p>You have distribution. We have the merchandising engine. Together we make every listing on your platform perform harder.</p>
+      <div class="partner-fit">
+        FIT:
+        <div class="partner-fit-list">
+          <span>Marketplaces</span>
+          <span>DMS Providers</span>
+          <span>Dealer Website Platforms</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="partner-card">
+      <h3>Data Partners</h3>
+      <p>You have configuration depth. We have the score that turns raw specs into shopper-facing value signals.</p>
+      <div class="partner-fit">
+        FIT:
+        <div class="partner-fit-list">
+          <span>OEM Data Providers</span>
+          <span>Vehicle History Companies</span>
+          <span>Inventory Aggregators</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="partner-card">
+      <h3>Capital Partners</h3>
+      <p>Bootstrapped. Proven. API discussion underway with data partners. We're looking for investors who understand that merchandising accuracy is conversion infrastructure, not a feature, not an add-on.</p>
+      <div class="partner-fit">
+        FIT:
+        <div class="partner-fit-list">
+          <span>Strategic Investors</span>
+          <span>Automotive-Focused VCs</span>
+          <span>Industry Operators</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOUNDER CREDENTIALS ===== -->
+<section class="founder-creds">
+  <div class="founder-creds-inner">
+    <h2>Built by Someone Who's Been Inside the Machine.</h2>
+    <p>Joe Pistell spent 30 years inside automotive retail — as a dealer Marketing Director, Head of Marketplace at Cars.com, and Sr. Director of Innovation at Cox/Dealer.com. Two worldwide patents. NADA Best of Show. He built AutoMagic Labs to fix what he watched break for three decades.</p>
+    <div class="credentials">
+      <span class="credential">2 Worldwide Patents</span>
+      <span class="credential">NADA Best of Show</span>
+      <span class="credential">Cars.com — Head of Marketplace</span>
+      <span class="credential">Cox/Dealer.com — Sr. Director</span>
+      <span class="credential">30+ Years Automotive</span>
+      <span class="credential">3 Startups (all sold, all still in business)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT FORM ===== -->
+<section class="contact-section">
+  <h2>Let's Build This Together.</h2>
+  <p class="contact-subtitle">No decks required. Just a conversation.</p>
+
+  <form id="partner-form">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="first-name">First & Last Name *</label>
+        <input type="text" id="first-name" name="first_name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="company">Company *</label>
+        <input type="text" id="company" name="company" required>
+      </div>
+      <div class="form-group">
+        <label for="role">Your Role *</label>
+        <input type="text" id="role" name="role" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone (Optional)</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+      <div class="form-group">
+        <label for="partnership">Partnership Type *</label>
+        <select id="partnership" name="partnership" required>
+          <option value="">Select partnership type</option>
+          <option value="platform">Platform Partner</option>
+          <option value="data">Data Partner</option>
+          <option value="capital">Capital Partner</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group form-full">
+        <label for="message">Tell us about the opportunity *</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+    </div>
+    <button type="submit" class="btn-primary">Send Message →</button>
+  </form>
+</section>
+
+<!-- ===== FOOTER CTA ===== -->
+<section class="footer-cta">
+  <h2>Ready to Explore Partnership?</h2>
+  <p>Get in touch with our partnerships team.</p>
+  <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary">Audit My VDP →</a>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>© 2026 AutoMagic Labs. All rights reserved. | <a href="https://www.automagiclabs.ai">automagiclabs.ai</a></p>
+</footer>
+
+<script>
+  document.getElementById('partner-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+    console.log('Form submitted:', data);
+    alert('Thank you for your interest! We will be in touch shortly.');
+    this.reset();
+  });
+</script>
+
+</body>
+</html>

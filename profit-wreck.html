@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profit Wrecker of the Week — AutoMagic Labs</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/*
+ * AML DESIGN TOKENS v1.0
+ * ========================
+ * Single source of truth for all visual styling.
+ * James: edit THIS file to restyle the entire site.
+ * No component or copy changes needed.
+ *
+ * Direction: Option B — High-Contrast Editorial
+ * Black & white base + ONE accent color.
+ */
+
+:root {
+  /* ——— COLOR: SURFACES ——— */
+  --surface-white:      #FAFAFA;
+  --surface-off-white:  #F2F0ED;
+  --surface-light:      #E8E5E0;
+  --surface-dark:       #111111;
+
+  /* ——— COLOR: TEXT ——— */
+  --text-primary:       #111111;
+  --text-body:          #3A3632;
+  --text-secondary:     #9A9590;
+  --text-inverse:       #FAFAFA;
+  --text-inverse-muted: #C5C0BB;
+
+  /* ——— COLOR: ACCENT (the ONE color) ——— */
+  --accent:             #D4582A;
+  --accent-hover:       #A8421F;
+  --accent-light:       #F0D8CC;
+  --accent-bg:          #FEE8E0;
+
+  /* ——— COLOR: SEMANTIC ——— */
+  --green:              #1A7A2B;
+  --green-bg:           #E6F9E8;
+  --yellow:             #8B6914;
+  --yellow-bg:          #FEF0D0;
+  --blue:               #1A4DA8;
+  --blue-bg:            #E0ECFE;
+  --purple:             #6B21A8;
+  --purple-bg:          #F0E6FE;
+
+  /* ——— COLOR: DARK SECTIONS ——— */
+  --dark-border:        #333333;
+  --dark-surface:       #1A1918;
+  --dark-text-muted:    #888888;
+  --dark-text-subtle:   #666666;
+
+  /* ——— TYPOGRAPHY ——— */
+  --font-heading:       'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body:          'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* Heading scale */
+  --text-hero:          3.5rem;
+  --text-h1:            2.75rem;
+  --text-h2:            2.25rem;
+  --text-h3:            1.5rem;
+  --text-h4:            1.15rem;
+  --text-body-lg:       1.2rem;
+  --text-body:          1rem;
+  --text-body-sm:       0.9rem;
+  --text-caption:       0.8rem;
+  --text-eyebrow:       0.75rem;
+  --text-micro:         0.7rem;
+  --text-nano:          0.65rem;
+
+  /* Weight */
+  --weight-regular:     400;
+  --weight-medium:      500;
+  --weight-semibold:    600;
+  --weight-bold:        700;
+
+  /* Line height */
+  --leading-tight:      1.08;
+  --leading-snug:       1.3;
+  --leading-normal:     1.6;
+  --leading-relaxed:    1.7;
+
+  /* Letter spacing */
+  --tracking-tight:     -0.03em;
+  --tracking-snug:      -0.02em;
+  --tracking-normal:    0;
+  --tracking-wide:      0.05em;
+  --tracking-wider:     0.08em;
+  --tracking-widest:    0.15em;
+
+  /* ——— SPACING ——— */
+  --space-xs:           0.25rem;
+  --space-sm:           0.5rem;
+  --space-md:           1rem;
+  --space-lg:           1.5rem;
+  --space-xl:           2rem;
+  --space-2xl:          3rem;
+  --space-3xl:          4rem;
+  --space-4xl:          5rem;
+
+  /* ——— LAYOUT ——— */
+  --max-width:          1200px;
+  --max-width-narrow:   800px;
+  --max-width-reading:  600px;
+  --page-padding:       2rem;
+  --section-padding:    5rem;
+
+  /* ——— BORDERS ——— */
+  --radius-sm:          4px;
+  --radius-md:          8px;
+  --radius-lg:          12px;
+  --radius-xl:          16px;
+  --radius-full:        100px;
+  --border-default:     1px solid var(--surface-light);
+  --border-dark:        1px solid var(--dark-border);
+  --border-accent:      2px solid var(--accent);
+
+  /* ——— SHADOWS ——— */
+  --shadow-sm:          0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:          0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:          0 12px 32px rgba(0,0,0,0.12);
+  --shadow-xl:          0 24px 64px rgba(0,0,0,0.15);
+
+  /* ——— TRANSITIONS ——— */
+  --transition-fast:    0.15s ease;
+  --transition-normal:  0.2s ease;
+  --transition-slow:    0.3s ease;
+
+  /* ——— BANNER ——— */
+  --banner-bg:          var(--surface-dark);
+  --banner-text:        var(--text-inverse-muted);
+  --banner-cta-bg:      var(--accent);
+  --banner-cta-text:    var(--text-inverse);
+  --banner-height:      44px;
+}
+
+/* ——— RESPONSIVE OVERRIDES ——— */
+@media (max-width: 900px) {
+  :root {
+    --text-hero:        2.5rem;
+    --text-h1:          2rem;
+    --text-h2:          1.75rem;
+    --section-padding:  3.5rem;
+    --page-padding:     1.5rem;
+  }
+}
+@media (max-width: 600px) {
+  :root {
+    --text-hero:        2rem;
+    --text-h1:          1.75rem;
+    --text-h2:          1.5rem;
+    --section-padding:  2.5rem;
+    --page-padding:     1rem;
+  }
+}
+
+/* =============================================
+   SHARED STYLES (embedded)
+   ============================================= */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--surface-white);
+  color: var(--text-primary);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  margin-top: var(--banner-height);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* PERSISTENT BANNER */
+.site-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--banner-height);
+  background: var(--banner-bg);
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  font-size: var(--text-body-sm);
+  color: var(--banner-text);
+}
+.site-banner strong {
+  color: var(--text-inverse);
+  font-weight: var(--weight-semibold);
+}
+.banner-cta {
+  background: var(--banner-cta-bg);
+  color: var(--banner-cta-text);
+  font-size: var(--text-micro);
+  font-weight: var(--weight-bold);
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-full);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transition: background var(--transition-normal);
+}
+.banner-cta:hover { background: var(--accent-hover); }
+
+/* NAV */
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem var(--page-padding);
+  max-width: var(--max-width); margin: 0 auto;
+  border-bottom: var(--border-default);
+}
+.nav-logo {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: 1.25rem;
+  letter-spacing: var(--tracking-snug);
+  display: flex; align-items: center; gap: var(--space-sm);
+}
+.logo-mark {
+  width: 28px; height: 28px;
+  background: var(--accent);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-weight: var(--weight-bold);
+  font-size: 0.75rem;
+}
+.nav-links {
+  display: flex; gap: var(--space-xl); align-items: center;
+}
+.nav-links a {
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  color: var(--text-body);
+  transition: color var(--transition-normal);
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a.active {
+  color: var(--accent);
+  font-weight: var(--weight-semibold);
+}
+.nav-cta-link {
+  font-weight: var(--weight-semibold) !important;
+  color: var(--accent) !important;
+}
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger {
+  cursor: pointer;
+  display: flex; align-items: center; gap: 0.3rem;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  color: var(--text-body);
+}
+.nav-dropdown-trigger::after {
+  content: '▾'; font-size: 0.65rem;
+}
+.nav-dropdown-menu {
+  display: none;
+  position: absolute; top: calc(100% + 0.75rem); left: -1rem;
+  background: white;
+  border: var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-sm) 0;
+  min-width: 200px;
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+}
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu a {
+  display: flex; align-items: center; gap: var(--space-sm);
+  padding: 0.6rem 1.25rem;
+  font-size: var(--text-body-sm);
+}
+.nav-dropdown-menu a:hover { background: var(--surface-off-white); }
+.dropdown-badge {
+  font-size: var(--text-nano);
+  font-weight: var(--weight-bold);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+.badge-live { background: var(--green-bg); color: var(--green); }
+.badge-soon { background: var(--surface-off-white); color: var(--text-secondary); }
+
+/* BUTTONS */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  background: var(--accent);
+  color: white;
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-body);
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-normal);
+  border: none; cursor: pointer;
+  font-family: var(--font-body);
+}
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary-lg { font-size: 1.15rem; padding: 1rem 2.25rem; }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-body);
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--text-primary);
+  color: var(--text-primary);
+  transition: all var(--transition-normal);
+  background: transparent; cursor: pointer;
+  font-family: var(--font-body);
+}
+.btn-secondary:hover { background: var(--text-primary); color: white; }
+
+/* SECTION PATTERNS */
+.section-eyebrow {
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.section-light { padding: var(--section-padding) var(--page-padding); background: var(--surface-white); }
+.section-alt { padding: var(--section-padding) var(--page-padding); background: var(--surface-off-white); }
+.section-dark {
+  padding: var(--section-padding) var(--page-padding);
+  background: var(--surface-dark); color: var(--text-inverse);
+}
+.section-dark .section-eyebrow { color: var(--accent); }
+.section-dark h2 { color: var(--text-inverse); }
+.section-dark p { color: var(--text-inverse-muted); }
+.section-dark strong { color: var(--text-inverse); }
+.section-dark em { font-style: normal; color: var(--accent); }
+
+.container { max-width: var(--max-width); margin: 0 auto; }
+.container-narrow { max-width: var(--max-width-narrow); margin: 0 auto; }
+
+/* FOOTER CTA */
+.footer-cta {
+  background: var(--surface-dark); color: var(--text-inverse);
+  padding: var(--section-padding) var(--page-padding); text-align: center;
+}
+.footer-cta h2 {
+  font-family: var(--font-heading); font-size: var(--text-h2);
+  font-weight: var(--weight-bold); margin-bottom: var(--space-md);
+}
+.footer-cta h2 em { font-style: normal; color: var(--accent); }
+.footer-cta p {
+  font-size: 1.1rem; color: var(--text-inverse-muted);
+  margin-bottom: var(--space-xl);
+  max-width: 500px; margin-left: auto; margin-right: auto;
+}
+.footer-cta-sub {
+  margin-top: var(--space-md); font-size: var(--text-caption);
+  color: var(--text-secondary);
+}
+
+/* FOOTER */
+footer {
+  padding: var(--space-xl); text-align: center;
+  font-size: var(--text-caption); color: var(--text-secondary);
+  border-top: var(--border-default);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .nav-links a:not(.nav-cta-link) { display: none; }
+  .site-banner { font-size: var(--text-micro); gap: var(--space-sm); }
+}
+</style>
+<style>
+  /* ============ PAGE-SPECIFIC: PROFIT WRECKER OF THE WEEK ============ */
+
+  /* HERO */
+  .hero {
+    padding: 6rem var(--page-padding) var(--section-padding);
+    max-width: var(--max-width); margin: 0 auto;
+    text-align: center;
+  }
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-size: var(--text-hero);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: var(--space-lg);
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-subhead {
+    font-size: var(--text-body-lg);
+    color: var(--text-body);
+    line-height: var(--leading-relaxed);
+    max-width: 640px;
+    margin: 0 auto var(--space-lg);
+  }
+  .hero-body {
+    font-size: var(--text-body);
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ============ THE WRECK CASCADE (cause-and-effect) ============ */
+  .cascade-section {
+    background: var(--surface-off-white);
+    padding: var(--section-padding) var(--page-padding);
+  }
+  .cascade-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    text-align: center;
+  }
+  .cascade-inner h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h2);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-snug);
+    margin-bottom: var(--space-md);
+  }
+  .cascade-intro {
+    font-size: var(--text-body-lg);
+    color: var(--text-body);
+    line-height: var(--leading-relaxed);
+    max-width: 640px;
+    margin: 0 auto var(--space-2xl);
+  }
+  .wreck-cascade {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+  }
+  .cascade-stage {
+    position: relative;
+    background: white;
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all var(--transition-normal);
+  }
+  .cascade-stage:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+  }
+  .cascade-number {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: var(--weight-bold);
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: var(--space-md);
+  }
+  .cascade-label {
+    font-family: var(--font-heading);
+    font-size: var(--text-h4);
+    font-weight: var(--weight-bold);
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+  .cascade-stage::after {
+    content: '→';
+    position: absolute;
+    right: -1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+  }
+  .cascade-stage:last-child::after {
+    display: none;
+  }
+
+  /* ============ FEATURED WRECK OF THE WEEK ============ */
+  .featured-wreck {
+    padding: var(--section-padding) var(--page-padding);
+    background: var(--surface-white);
+  }
+  .featured-wreck-inner {
+    max-width: var(--max-width); margin: 0 auto;
+  }
+  .featured-wreck-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-2xl);
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+  .featured-wreck-header h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h2);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-snug);
+  }
+  .featured-wreck-header h2 em { font-style: normal; color: var(--accent); }
+  .week-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--accent);
+    color: white;
+    font-size: var(--text-micro);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+  }
+
+  /* Vehicle card */
+  .wreck-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    border: 2px solid var(--text-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    position: relative;
+    overflow: hidden;
+  }
+  .wreck-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: var(--accent);
+  }
+
+  .wreck-vehicle-info h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    font-weight: var(--weight-bold);
+    margin-bottom: var(--space-sm);
+  }
+  .wreck-grade {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+  .grade-letter {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: var(--weight-bold);
+    color: var(--accent);
+    line-height: 1;
+  }
+  .grade-label {
+    font-size: var(--text-body-sm);
+    color: var(--text-secondary);
+    font-weight: var(--weight-medium);
+  }
+
+  .wreck-narrative {
+    font-size: var(--text-body);
+    color: var(--text-body);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-lg);
+  }
+  .wreck-narrative p {
+    margin-bottom: var(--space-md);
+  }
+  .wreck-narrative p:last-child {
+    margin-bottom: 0;
+  }
+  .wreck-narrative strong {
+    color: var(--text-primary);
+  }
+
+  /* Stats panel */
+  .wreck-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  .wreck-stat-card {
+    background: var(--surface-off-white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+  }
+  .wreck-stat-number {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: var(--weight-bold);
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+  }
+  .wreck-stat-label {
+    font-size: var(--text-body-sm);
+    color: var(--text-body);
+    font-weight: var(--weight-medium);
+  }
+  .wreck-stat-context {
+    font-size: var(--text-caption);
+    color: var(--text-secondary);
+    margin-top: var(--space-xs);
+  }
+
+  /* Missing features list */
+  .missing-features {
+    margin-top: var(--space-lg);
+  }
+  .missing-features-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-h4);
+    font-weight: var(--weight-bold);
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+  }
+  .feature-tag {
+    display: inline-block;
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-size: var(--text-caption);
+    font-weight: var(--weight-semibold);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-full);
+    margin: 0.25rem;
+  }
+
+  /* ============ THE LESSON (dark section) ============ */
+  .lesson-section {
+    background: var(--surface-dark);
+    color: var(--text-inverse);
+    padding: var(--section-padding) var(--page-padding);
+  }
+  .lesson-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+  }
+  .lesson-text h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h2);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-snug);
+    margin-bottom: var(--space-lg);
+    color: var(--text-inverse);
+  }
+  .lesson-text p {
+    font-size: var(--text-body-lg);
+    color: var(--text-inverse-muted);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-md);
+  }
+  .lesson-text p:last-child {
+    margin-bottom: 0;
+  }
+  .lesson-text strong {
+    color: var(--text-inverse);
+  }
+  .lesson-text em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .lesson-callout {
+    background: rgba(212, 88, 42, 0.1);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    text-align: center;
+  }
+  .lesson-callout-text {
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    font-weight: var(--weight-bold);
+    color: var(--text-inverse);
+    line-height: var(--leading-snug);
+    margin-bottom: var(--space-md);
+  }
+  .lesson-callout-text em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .lesson-callout-sub {
+    font-size: var(--text-body);
+    color: var(--text-inverse-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ============ ARCHIVE SECTION ============ */
+  .archive-section {
+    padding: var(--section-padding) var(--page-padding);
+    background: var(--surface-off-white);
+  }
+  .archive-inner {
+    max-width: var(--max-width); margin: 0 auto;
+  }
+  .archive-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-2xl);
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+  .archive-header h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h2);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-snug);
+  }
+  .archive-note {
+    font-size: var(--text-body-sm);
+    color: var(--text-secondary);
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+  .archive-card {
+    background: white;
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+  }
+  .archive-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+  }
+  .archive-card-week {
+    font-size: var(--text-eyebrow);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-sm);
+  }
+  .archive-card h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h4);
+    font-weight: var(--weight-bold);
+    margin-bottom: var(--space-sm);
+    line-height: var(--leading-snug);
+  }
+  .archive-card-grade {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: var(--weight-bold);
+    color: var(--accent);
+    margin-bottom: var(--space-sm);
+  }
+  .archive-card p {
+    font-size: var(--text-body-sm);
+    color: var(--text-body);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-md);
+  }
+  .archive-card-stat {
+    font-size: var(--text-caption);
+    color: var(--text-secondary);
+    font-weight: var(--weight-medium);
+  }
+  .archive-card-stat strong {
+    color: var(--accent);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .hero { padding: 4rem var(--page-padding) 3rem; }
+    .wreck-cascade {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .cascade-stage::after { display: none; }
+    .cascade-stage { padding: 1.5rem 1rem; }
+    .wreck-card { grid-template-columns: 1fr; }
+    .lesson-inner { grid-template-columns: 1fr; }
+    .archive-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .hero { padding: 3rem var(--page-padding) 2.5rem; }
+    .hero h1 { font-size: 2rem; }
+    .wreck-cascade { grid-template-columns: 1fr; gap: 1rem; }
+    .cascade-number { font-size: 2rem; }
+    .archive-grid { grid-template-columns: 1fr; }
+    .featured-wreck-header { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PERSISTENT BANNER -->
+<div class="site-banner">
+  <span><strong>Your VDP has gaps.</strong> Find them — free, in under 5 minutes.</span>
+  <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="banner-cta">Audit My VDP →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">A</div>
+    AutoMagic Labs
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <div class="nav-dropdown">
+      <span class="nav-dropdown-trigger">Products</span>
+      <div class="nav-dropdown-menu">
+        <a href="ths.html">THS <span class="dropdown-badge badge-soon">New</span></a>
+        <a href="vdp-audit.html">VDP Audit <span class="dropdown-badge badge-live">Live</span></a>
+        <a href="vdp-boost.html">VDP Boost</a>
+        <a href="turnsignal.html">TurnSignal™ <span class="dropdown-badge badge-soon">Coming Soon</span></a>
+      </div>
+    </div>
+    <a href="profit-wreck.html" class="nav-cta-link active">Profit Wrecker</a>
+    <a href="team.html">Team</a>
+    <a href="faq.html">FAQ</a>
+    <a href="partner.html">Partner With Us</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="section-light">
+  <div class="hero">
+    <div class="section-eyebrow">PROFIT WRECKER OF THE WEEK</div>
+    <h1>Real vehicles. Real gaps.<br><em>Real money left on the lot.</em></h1>
+    <p class="hero-subhead">Every week, we audit a VDP that scored a D or F. We show what's missing, what it costs, and why the wreck happened — so you can stop it on your lot.</p>
+    <p class="hero-body">These aren't hypothetical scenarios. Every Profit Wrecker is a real vehicle, on a real lot, with real hidden value sitting in plain sight.</p>
+  </div>
+</section>
+
+<!-- ===== THE WRECK: CAUSE AND EFFECT ===== -->
+<section class="cascade-section">
+  <div class="cascade-inner">
+    <div class="section-eyebrow">HOW A PROFIT WRECK HAPPENS</div>
+    <h2>The damage starts before price ever changes.</h2>
+    <p class="cascade-intro">A vehicle can carry real value and still underperform. What feels like a market problem often starts as a page problem.</p>
+
+    <div class="wreck-cascade">
+      <div class="cascade-stage">
+        <div class="cascade-number">1</div>
+        <div class="cascade-label">Hot features missing from VDP</div>
+      </div>
+      <div class="cascade-stage">
+        <div class="cascade-number">2</div>
+        <div class="cascade-label">Weak VDP precision</div>
+      </div>
+      <div class="cascade-stage">
+        <div class="cascade-number">3</div>
+        <div class="cascade-label">Value stays hidden from shoppers</div>
+      </div>
+      <div class="cascade-stage">
+        <div class="cascade-number">4</div>
+        <div class="cascade-label">Inventory ages</div>
+      </div>
+      <div class="cascade-stage">
+        <div class="cascade-number">5</div>
+        <div class="cascade-label">Discount pressure builds</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED WRECK: WEEK 1 ===== -->
+<section class="featured-wreck" id="featured">
+  <div class="featured-wreck-inner">
+    <div class="featured-wreck-header">
+      <div>
+        <div class="section-eyebrow">THIS WEEK'S WRECK</div>
+        <h2>2021 Ford Bronco <em>Badlands</em></h2>
+      </div>
+      <span class="week-badge">Week 1 — April 2026</span>
+    </div>
+
+    <div class="wreck-card">
+      <!-- Left: narrative -->
+      <div class="wreck-vehicle-info">
+        <div class="wreck-grade">
+          <span class="grade-letter">D</span>
+          <span class="grade-label">VDP Audit Grade</span>
+        </div>
+
+        <div class="wreck-narrative">
+          <p>This Bronco Badlands has everything a buyer wants — and the VDP shows almost none of it.</p>
+          <p>The listing buries <strong>37 high-value features</strong> that shoppers actively search for. Sasquatch Package. Front & Rear Locking Differentials. 360-Degree Camera. Trail Turn Assist. They're all factory-installed. None of them appear where a shopper would find them.</p>
+          <p>Meanwhile, the VDP leads with generic trim language. The features that make this Bronco worth choosing over every other Bronco on the market are invisible.</p>
+          <p>The result? A vehicle with <strong>$5,180 in hidden MSRP value</strong> that shoppers can't see. The comparison is lost before it starts.</p>
+        </div>
+
+        <div class="missing-features">
+          <div class="missing-features-title">Missing Hot Features</div>
+          <span class="feature-tag">Sasquatch Package</span>
+          <span class="feature-tag">Front Locking Differential</span>
+          <span class="feature-tag">Rear Locking Differential</span>
+          <span class="feature-tag">360-Degree Camera</span>
+          <span class="feature-tag">Trail Turn Assist</span>
+          <span class="feature-tag">Adaptive Cruise Control</span>
+          <span class="feature-tag">12" SYNC 4 Touchscreen</span>
+          <span class="feature-tag">LED Signature Lighting</span>
+          <span class="feature-tag">Heavy-Duty Modular Bumper</span>
+          <span class="feature-tag">+ 28 more</span>
+        </div>
+      </div>
+
+      <!-- Right: stats -->
+      <div class="wreck-stats">
+        <div class="wreck-stat-card">
+          <div class="wreck-stat-number">37</div>
+          <div class="wreck-stat-label">Hot features missing from VDP</div>
+        </div>
+        <div class="wreck-stat-card">
+          <div class="wreck-stat-number">$5,180</div>
+          <div class="wreck-stat-label">Hidden MSRP value</div>
+          <div class="wreck-stat-context">Installed features not surfaced on listing</div>
+        </div>
+        <div class="wreck-stat-card">
+          <div class="wreck-stat-number">D</div>
+          <div class="wreck-stat-label">VDP Audit Grade</div>
+          <div class="wreck-stat-context">Based on feature coverage & Hot Options™ visibility</div>
+        </div>
+        <div class="wreck-stat-card" style="background: var(--surface-dark); color: var(--text-inverse);">
+          <div class="wreck-stat-number" style="color: var(--accent);">0</div>
+          <div class="wreck-stat-label" style="color: var(--text-inverse-muted);">Hot features visible to shoppers</div>
+          <div class="wreck-stat-context" style="color: var(--dark-text-subtle);">Out of 37 factory-installed hot options</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE LESSON (dark) ===== -->
+<section class="lesson-section">
+  <div class="lesson-inner">
+    <div class="lesson-text">
+      <div class="section-eyebrow">THE LESSON</div>
+      <h2>This isn't a pricing problem.<br>It's a merchandising problem.</h2>
+      <p>The dealer didn't need to drop price. They needed to <em>surface what was already there</em>.</p>
+      <p>When shoppers compare two Broncos side by side — one with visible Sasquatch Package, locking differentials, and trail features versus one with a generic trim line — <strong>the complete listing wins every time</strong>.</p>
+      <p>The incomplete listing ages. The dealer drops price. The profit wreck is complete.</p>
+    </div>
+    <div class="lesson-callout">
+      <div class="lesson-callout-text">The vehicle had the value.<br>The VDP <em>hid it</em>.</div>
+      <p class="lesson-callout-sub">37 features. $5,180 in hidden MSRP value. Zero visibility on the listing. This is what a Profit Wreck looks like — and it's happening across your lot right now.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ARCHIVE / PAST WRECKS ===== -->
+<!-- James: This section scales. Each week, add an archive-card. Featured wreck above swaps to the latest. -->
+<section class="archive-section">
+  <div class="archive-inner">
+    <div class="archive-header">
+      <h2>Past Wrecks</h2>
+      <span class="archive-note">New wreck every week. Real vehicles. Dealer names redacted.</span>
+    </div>
+    <div class="archive-grid">
+      <!-- Archive Card: Week 1 (current — will become archive when Week 2 launches) -->
+      <div class="archive-card">
+        <div class="archive-card-week">Week 1 — April 2026</div>
+        <h3>2021 Ford Bronco Badlands</h3>
+        <div class="archive-card-grade">D</div>
+        <p>37 missing hot features. $5,180 in hidden MSRP value. Sasquatch Package invisible to shoppers.</p>
+        <div class="archive-card-stat"><strong>37</strong> features missing · <strong>$5,180</strong> hidden value</div>
+      </div>
+      <!-- James: Add new archive-card divs here as weeks are added -->
+      <div class="archive-card" style="border-style: dashed; opacity: 0.5; cursor: default;">
+        <div class="archive-card-week">Week 2 — Coming Soon</div>
+        <h3>Next Wreck</h3>
+        <p>A new D or F audit drops every week. Real vehicles, real gaps, real money.</p>
+      </div>
+      <div class="archive-card" style="border-style: dashed; opacity: 0.5; cursor: default;">
+        <div class="archive-card-week">Week 3 — Coming Soon</div>
+        <h3>Next Wreck</h3>
+        <p>Subscribe to get notified when new wrecks drop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER CTA ===== -->
+<section class="footer-cta">
+  <h2>Is your lot a <em>Profit Wreck</em> waiting to happen?</h2>
+  <p>Find out in under 5 minutes. Free. No login.</p>
+  <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary btn-primary-lg" style="margin-top: var(--space-md);">Audit My VDP →</a>
+  <div class="footer-cta-sub" style="color: var(--text-inverse-muted); margin-top: var(--space-lg);">
+    Or email <strong style="color: var(--accent);">vdpaudit@automagiclabs.ai</strong> to audit your first 10 VDPs free.
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>&copy; 2026 AutoMagic Labs. All rights reserved. | <a href="https://www.automagiclabs.ai">automagiclabs.ai</a></p>
+</footer>
+
+</body>
+</html>

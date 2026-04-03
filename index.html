@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoMagic Labs — VDP Performance & Merchandising</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   AML DESIGN TOKENS v1.0
+   ============================================= */
+:root {
+  --surface-white:      #FAFAFA;
+  --surface-off-white:  #F2F0ED;
+  --surface-light:      #E8E5E0;
+  --surface-dark:       #111111;
+  --text-primary:       #111111;
+  --text-body:          #3A3632;
+  --text-secondary:     #9A9590;
+  --text-inverse:       #FAFAFA;
+  --text-inverse-muted: #C5C0BB;
+  --accent:             #D4582A;
+  --accent-hover:       #A8421F;
+  --accent-light:       #F0D8CC;
+  --accent-bg:          #FEE8E0;
+  --green:              #1A7A2B;
+  --green-bg:           #E6F9E8;
+  --yellow:             #8B6914;
+  --yellow-bg:          #FEF0D0;
+  --blue:               #1A4DA8;
+  --blue-bg:            #E0ECFE;
+  --purple:             #6B21A8;
+  --purple-bg:          #F0E6FE;
+  --dark-border:        #333333;
+  --dark-surface:       #1A1918;
+  --dark-text-muted:    #888888;
+  --dark-text-subtle:   #666666;
+  --font-heading:       'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body:          'DM Sans', system-ui, -apple-system, sans-serif;
+  --text-hero:          3.5rem;
+  --text-h1:            2.75rem;
+  --text-h2:            2.25rem;
+  --text-h3:            1.5rem;
+  --text-h4:            1.15rem;
+  --text-body-lg:       1.2rem;
+  --text-body-size:     1rem;
+  --text-body-sm:       0.9rem;
+  --text-caption:       0.8rem;
+  --text-eyebrow:       0.75rem;
+  --text-micro:         0.7rem;
+  --text-nano:          0.65rem;
+  --weight-regular:     400;
+  --weight-medium:      500;
+  --weight-semibold:    600;
+  --weight-bold:        700;
+  --leading-tight:      1.08;
+  --leading-snug:       1.3;
+  --leading-normal:     1.6;
+  --leading-relaxed:    1.7;
+  --tracking-tight:     -0.03em;
+  --tracking-snug:      -0.02em;
+  --tracking-wide:      0.05em;
+  --tracking-wider:     0.08em;
+  --tracking-widest:    0.15em;
+  --space-xs:           0.25rem;
+  --space-sm:           0.5rem;
+  --space-md:           1rem;
+  --space-lg:           1.5rem;
+  --space-xl:           2rem;
+  --space-2xl:          3rem;
+  --space-3xl:          4rem;
+  --space-4xl:          5rem;
+  --max-width:          1200px;
+  --max-width-narrow:   800px;
+  --max-width-reading:  600px;
+  --page-padding:       2rem;
+  --section-padding:    5rem;
+  --radius-sm:          4px;
+  --radius-md:          8px;
+  --radius-lg:          12px;
+  --radius-xl:          16px;
+  --radius-full:        100px;
+  --border-default:     1px solid var(--surface-light);
+  --border-dark:        1px solid var(--dark-border);
+  --border-accent:      2px solid var(--accent);
+  --shadow-sm:          0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:          0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:          0 12px 32px rgba(0,0,0,0.12);
+  --shadow-xl:          0 24px 64px rgba(0,0,0,0.15);
+  --transition-fast:    0.15s ease;
+  --transition-normal:  0.2s ease;
+  --transition-slow:    0.3s ease;
+  --banner-bg:          var(--surface-dark);
+  --banner-text:        var(--text-inverse-muted);
+  --banner-cta-bg:      var(--accent);
+  --banner-cta-text:    var(--text-inverse);
+  --banner-height:      44px;
+}
+@media (max-width: 900px) {
+  :root {
+    --text-hero: 2.5rem; --text-h1: 2rem; --text-h2: 1.75rem;
+    --section-padding: 3.5rem; --page-padding: 1.5rem;
+  }
+}
+@media (max-width: 600px) {
+  :root {
+    --text-hero: 2rem; --text-h1: 1.75rem; --text-h2: 1.5rem;
+    --section-padding: 2.5rem; --page-padding: 1rem;
+  }
+}
+
+/* =============================================
+   SHARED COMPONENT STYLES
+   ============================================= */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--surface-white);
+  color: var(--text-primary);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  margin-top: var(--banner-height);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* Banner */
+.site-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--banner-height);
+  background: var(--banner-bg);
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  font-size: var(--text-body-sm);
+  color: var(--banner-text);
+}
+.site-banner strong { color: var(--text-inverse); font-weight: var(--weight-semibold); }
+.banner-cta {
+  background: var(--banner-cta-bg); color: var(--banner-cta-text);
+  font-size: var(--text-micro); font-weight: var(--weight-bold);
+  padding: 0.35rem 1rem; border-radius: var(--radius-full);
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  transition: background var(--transition-normal);
+}
+.banner-cta:hover { background: var(--accent-hover); }
+
+/* Nav */
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem var(--page-padding);
+  max-width: var(--max-width); margin: 0 auto;
+  border-bottom: var(--border-default);
+}
+.nav-logo {
+  font-family: var(--font-heading); font-weight: var(--weight-bold);
+  font-size: 1.25rem; letter-spacing: var(--tracking-snug);
+  display: flex; align-items: center; gap: var(--space-sm);
+}
+.logo-mark {
+  width: 28px; height: 28px; background: var(--accent); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: var(--weight-bold); font-size: 0.75rem;
+}
+.nav-links { display: flex; gap: var(--space-xl); align-items: center; }
+.nav-links a {
+  font-size: var(--text-caption); font-weight: var(--weight-medium);
+  color: var(--text-body); transition: color var(--transition-normal);
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-cta-link { font-weight: var(--weight-semibold) !important; color: var(--accent) !important; }
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger {
+  cursor: pointer; display: flex; align-items: center; gap: 0.3rem;
+  font-size: var(--text-caption); font-weight: var(--weight-medium); color: var(--text-body);
+}
+.nav-dropdown-trigger::after { content: '▾'; font-size: 0.65rem; }
+.nav-dropdown-menu {
+  display: none; position: absolute; top: calc(100% + 0.75rem); left: -1rem;
+  background: white; border: var(--border-default); border-radius: var(--radius-lg);
+  padding: var(--space-sm) 0; min-width: 200px; box-shadow: var(--shadow-md); z-index: 100;
+}
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu a {
+  display: flex; align-items: center; gap: var(--space-sm);
+  padding: 0.6rem 1.25rem; font-size: var(--text-body-sm);
+}
+.nav-dropdown-menu a:hover { background: var(--surface-off-white); }
+.dropdown-badge {
+  font-size: var(--text-nano); font-weight: var(--weight-bold);
+  padding: 0.15rem 0.5rem; border-radius: var(--radius-full);
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+}
+.badge-live { background: var(--green-bg); color: var(--green); }
+.badge-soon { background: var(--surface-off-white); color: var(--text-secondary); }
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  background: var(--accent); color: white; font-weight: var(--weight-semibold);
+  font-size: var(--text-body-size); padding: 0.9rem 1.75rem;
+  border-radius: var(--radius-md); transition: background var(--transition-normal);
+  border: none; cursor: pointer; font-family: var(--font-body);
+}
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary-lg { font-size: 1.15rem; padding: 1rem 2.25rem; }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  font-weight: var(--weight-semibold); font-size: var(--text-body-size);
+  padding: 0.9rem 1.75rem; border-radius: var(--radius-md);
+  border: 1.5px solid var(--text-primary); color: var(--text-primary);
+  transition: all var(--transition-normal); background: transparent;
+  cursor: pointer; font-family: var(--font-body);
+}
+.btn-secondary:hover { background: var(--text-primary); color: white; }
+
+/* Section patterns */
+.section-eyebrow {
+  font-size: var(--text-eyebrow); font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest); text-transform: uppercase;
+  color: var(--accent); margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--font-heading); font-size: var(--text-h2);
+  font-weight: var(--weight-bold); letter-spacing: var(--tracking-snug);
+  margin-bottom: var(--space-sm);
+}
+.section-title em { font-style: normal; color: var(--accent); }
+
+/* Cards */
+.card {
+  background: white; border: var(--border-default); border-radius: var(--radius-lg);
+  padding: var(--space-xl); transition: border-color var(--transition-normal);
+}
+.card:hover { border-color: var(--text-secondary); }
+
+/* Footer CTA */
+.footer-cta {
+  background: var(--surface-dark); color: var(--text-inverse);
+  padding: var(--section-padding) var(--page-padding); text-align: center;
+}
+.footer-cta h2 {
+  font-family: var(--font-heading); font-size: var(--text-h2);
+  font-weight: var(--weight-bold); margin-bottom: var(--space-md);
+}
+.footer-cta h2 em { font-style: normal; color: var(--accent); }
+.footer-cta p {
+  font-size: 1.1rem; color: var(--text-inverse-muted); margin-bottom: var(--space-xl);
+  max-width: 500px; margin-left: auto; margin-right: auto;
+}
+
+/* Footer */
+footer {
+  padding: var(--space-xl); text-align: center;
+  font-size: var(--text-caption); color: var(--text-secondary);
+  border-top: var(--border-default);
+}
+
+/* Responsive nav */
+@media (max-width: 600px) {
+  .nav-links a:not(.nav-cta-link) { display: none; }
+  .site-banner { font-size: var(--text-micro); gap: var(--space-sm); }
+}
+
+/* =============================================
+   HOMEPAGE-SPECIFIC STYLES
+   ============================================= */
+
+/* Hero — centered vertical storytelling */
+.hero {
+  padding: 80px var(--page-padding) 60px;
+  text-align: center;
+}
+.hero-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-hero);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-md);
+}
+.hero-taglines {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xl);
+}
+.hero-tagline {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+  letter-spacing: var(--tracking-wide);
+}
+.hero-tagline-black {
+  color: var(--text-primary);
+}
+.hero .subheadline {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  max-width: 680px;
+  margin: 0 auto var(--space-md);
+  color: var(--text-body);
+}
+.hero-punchline {
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-snug);
+  margin: var(--space-lg) 0 var(--space-xl);
+}
+.hero-cta-group {
+  display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+}
+
+/* Age-comparison crossfade animation — centered, full-width in container */
+.age-comparison-container {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 1024 / 768;
+  margin: 0 auto var(--space-xl);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+.age-comparison-container img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.img-top {
+  z-index: 2;
+  animation: crossfadeCycle 8s infinite alternate ease-in-out;
+}
+.img-bottom {
+  z-index: 1;
+}
+@keyframes crossfadeCycle {
+  0%, 45% { opacity: 1; }
+  55%, 100% { opacity: 0; }
+}
+
+/* Placeholder for when images aren't present */
+.age-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--surface-off-white) 0%, var(--surface-light) 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  font-family: var(--font-heading);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: var(--space-xl);
+}
+.age-placeholder .placeholder-label {
+  font-size: var(--text-h3); font-weight: var(--weight-bold);
+  color: var(--text-body); margin-bottom: var(--space-sm);
+}
+.age-placeholder .placeholder-sub {
+  font-size: var(--text-body-sm); color: var(--text-secondary);
+}
+
+/* Invisible Epidemic stat cards */
+.epidemic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.epidemic-stat {
+  font-family: var(--font-heading);
+  font-size: 3.2rem;
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+  line-height: 1;
+}
+
+/* Cause & Effect */
+.cause-effect {
+  background: var(--surface-dark);
+  color: var(--text-inverse);
+  padding: var(--section-padding) var(--page-padding);
+}
+.cause-effect-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.cause-effect h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--text-inverse);
+  margin-bottom: 60px;
+}
+.cause-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+.cause-grid h3 {
+  color: var(--text-inverse);
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-lg);
+}
+.effect-tag {
+  background: rgba(212,88,42,0.15);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 14px 18px;
+  color: var(--text-inverse);
+  font-size: var(--text-body-sm);
+}
+
+/* AML System cards */
+.system-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+.system-card h3 {
+  font-family: var(--font-heading);
+  color: var(--accent);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+}
+.system-card h4 {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  margin: 12px 0 16px;
+}
+.system-badge {
+  font-size: 0.8rem;
+  background: var(--green-bg);
+  color: var(--green);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-weight: var(--weight-semibold);
+}
+
+/* Profit Wreck featured card */
+.profit-wreck-card {
+  background: white;
+  border: var(--border-accent);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  max-width: 820px;
+  margin: 40px auto;
+  text-align: left;
+}
+.profit-wreck-card ul {
+  text-align: left;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 620px;
+  margin: 0 auto;
+  padding-left: 1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cause-grid { grid-template-columns: 1fr; }
+  .system-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2.8rem; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== BANNER ===== -->
+<div class="site-banner">
+  <span><strong>Your VDP has gaps.</strong> Find them — free, in under 5 minutes.</span>
+  <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="banner-cta">Audit My VDP →</a>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <a href="index.html" class="nav-logo"><div class="logo-mark">A</div> AutoMagic Labs</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <div class="nav-dropdown">
+      <a class="nav-dropdown-trigger">Products</a>
+      <div class="nav-dropdown-menu">
+        <a href="ths.html">THS <span class="dropdown-badge badge-soon">New</span></a>
+        <a href="vdp-audit.html">VDP Audit <span class="dropdown-badge badge-live">Live</span></a>
+        <a href="vdp-boost.html">VDP Boost</a>
+        <a href="turnsignal.html">TurnSignal™ <span class="dropdown-badge badge-soon">Coming Soon</span></a>
+      </div>
+    </div>
+    <a href="profit-wreck.html" class="nav-cta-link">Profit Wreck</a>
+    <a href="team.html">Team</a>
+    <a href="faq.html">FAQ</a>
+    <a href="partner.html">Partner With Us</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-container">
+
+    <h1>Got Aged?</h1>
+
+    <!-- Crossfade Visual — the centerpiece -->
+    <div class="age-comparison-container">
+      <img src="Got Aged After.png" alt="What aged inventory looks like" class="img-bottom" loading="eager">
+      <img src="Got Aged Before.png" alt="What your VDP should look like" class="img-top" loading="eager">
+    </div>
+
+    <!-- Taglines that frame the image -->
+    <div class="hero-taglines">
+      <span class="hero-tagline hero-tagline-black">Shopping is Comparing</span>
+      <span style="font-size: 1.4rem; color: var(--text-secondary);">→</span>
+      <span class="hero-tagline">37% of VDPs are Missing HOT Features</span>
+    </div>
+
+    <!-- The argument -->
+    <p class="subheadline">
+      If dropping price is your first move,<br>
+      <span style="color: var(--accent); font-weight: 600;">you may be solving the wrong problem.</span>
+    </p>
+
+    <!-- The punchline -->
+    <p class="hero-punchline">Stop Discounting. <span style="color: var(--accent);">Start Auditing.</span></p>
+
+    <!-- CTAs -->
+    <div class="hero-cta-group">
+      <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary btn-primary-lg">Run Your Free VDP Audit →</a>
+      <a href="#profit-wrecks" class="btn-secondary" style="font-size: 1.15rem; padding: 1rem 2.25rem;">See Profit Wrecker of the Week</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== THE INVISIBLE EPIDEMIC ===== -->
+<section style="background: var(--surface-off-white); padding: var(--section-padding) var(--page-padding);">
+  <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+    <div class="section-eyebrow">THE INVISIBLE EPIDEMIC</div>
+    <h2 class="section-title" style="font-size: 2.4rem; max-width: 720px; margin: 0 auto 48px; line-height: 1.25;">
+      Most dealers assume their VDPs are accurate.<br>They're not.
+    </h2>
+
+    <div class="epidemic-grid">
+      <div class="card" style="text-align: center;">
+        <div class="epidemic-stat">5%</div>
+        <p style="margin-top: 16px; font-size: 1.05rem; color: var(--text-body);">of VDPs have MSRP errors of $2,000 or more</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div class="epidemic-stat">20%</div>
+        <p style="margin-top: 16px; font-size: 1.05rem; color: var(--text-body);">of used VDPs are missing 2 or more key features</p>
+      </div>
+      <div class="card" style="text-align: center; padding-top: 40px;">
+        <p style="font-size: 1.1rem; line-height: 1.5; color: var(--text-body);">
+          A nationwide issue affecting<br>
+          <strong>your website, AutoTrader, Cars.com, CarGurus,<br>paid ads &amp; more</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAUSE AND EFFECT ===== -->
+<section class="cause-effect">
+  <div class="cause-effect-inner">
+    <div class="section-eyebrow">THE OPERATING LENS</div>
+    <h2>Anyone can cut price. Very few tools can explain why a unit is underperforming.</h2>
+
+    <div class="cause-grid">
+      <div>
+        <h3>Dealers see the effects every day:</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="effect-tag">Aged inventory</div>
+          <div class="effect-tag">Ghost VDPs</div>
+          <div class="effect-tag">Weak advertising yield</div>
+          <div class="effect-tag">Less sales rep leverage</div>
+          <div class="effect-tag">Weaker sales performance</div>
+        </div>
+      </div>
+      <div>
+        <h3>What they usually do not see fast enough is the cause.</h3>
+        <div style="display: flex; flex-direction: column; gap: 20px; color: var(--text-inverse-muted);">
+          <div><strong style="color: var(--text-inverse);">Weak VDPs hide the story</strong> — Missing the high-demand features that separate commodities from chosen vehicles</div>
+          <div><strong style="color: var(--text-inverse);">Low VDP Precision weakens the selling surface</strong> — Shoppers compare on visible attributes, and incomplete data loses the sale</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE AML SYSTEM ===== -->
+<section style="padding: var(--section-padding) var(--page-padding); background: white;">
+  <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+    <div class="section-eyebrow">THE AML SYSTEM</div>
+    <h2 class="section-title" style="font-size: 2.4rem; max-width: 700px; margin: 0 auto 60px;">One connected system.<br>Three powerful moves.</h2>
+
+    <div class="system-grid">
+      <div class="card system-card">
+        <h3>Detect</h3>
+        <h4>TurnSignal</h4>
+        <p style="color: var(--text-body);">Spots low-attention inventory and ghost VDPs early — before they become aged units.</p>
+      </div>
+      <div class="card system-card">
+        <h3>Diagnose</h3>
+        <h4>VDP Audit <span class="system-badge">Industry's First</span></h4>
+        <p style="color: var(--text-body);">Finds hidden missing features, packages, and MSRP errors in minutes.</p>
+      </div>
+      <div class="card system-card">
+        <h3>Activate</h3>
+        <h4>VDP Boost</h4>
+        <p style="color: var(--text-body);">Turns audit findings into high-impact merchandising that creates real sales action.</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 60px; font-size: 1.15rem; font-weight: var(--weight-medium); color: var(--text-body);">
+      Powered by <strong>THS</strong> — the intelligence layer that separates technical specs from what actually drives buyer decisions.
+    </p>
+  </div>
+</section>
+
+<!-- ===== PROFIT WRECKS ===== -->
+<section id="profit-wrecks" style="background: var(--surface-off-white); padding: var(--section-padding) var(--page-padding);">
+  <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+    <div class="section-eyebrow">REAL EXAMPLES</div>
+    <h2 class="section-title">Profit Wrecks: Where profit quietly disappears</h2>
+
+    <div class="profit-wreck-card">
+      <p style="font-size: 1.15rem; margin-bottom: 12px;"><strong>2023 Ford Bronco Badlands 4WD &bull; Under 40k miles</strong></p>
+      <p style="color: var(--accent); font-size: 1.65rem; font-weight: 700; margin: 24px 0; font-family: var(--font-heading);">
+        37 Missing High-Value Features &bull; $5,180 in hidden MSRP value
+      </p>
+      <ul>
+        <li><strong>Missing Packages:</strong> Ford Co-Pilot360, SASQUATCH PACKAGE</li>
+        <li><strong>Missing Optionally Installed Features:</strong> Fixed Side Steps, Remote Approach Lighting, Class II Tow Rating, BLIS™ Blind Spot Warning, Proximity Cargo Release, Rear Cross-Traffic Alert</li>
+        <li><strong>Other High-Value Missing Features:</strong> 6-Way Multi-Adjust Seats, Monotone Paint, Removable Roof Panel, Pedestrian Auto-Brake, and more...</li>
+      </ul>
+      <p style="margin-top: 32px; font-style: italic; color: var(--text-body);">
+        Most dealers would discount this truck.<br>
+        <strong style="color: var(--text-primary);">The smart ones run the audit and fix it.</strong>
+      </p>
+    </div>
+
+    <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary btn-primary-lg" style="margin-top: 20px;">Run Your Own Free Audit →</a>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="footer-cta" style="padding: 100px var(--page-padding);">
+  <div style="max-width: 700px; margin: 0 auto;">
+    <h2 style="font-size: 2.4rem; line-height: var(--leading-snug); margin-bottom: 40px;">We're looking for pioneering dealers who see what others don't.</h2>
+    <p style="font-size: 1.15rem; max-width: 620px; margin: 0 auto 48px;">
+      If you want more turns and less discounting — and you're ready to fix problems your competitors don't even know exist — let's talk.
+    </p>
+    <a href="mailto:vdpaudit@automagiclabs.ai" class="btn-primary" style="font-size: 1.15rem; padding: 1.2rem 3rem;">Contact AML – Let's Talk</a>
+    <p style="margin-top: 40px; font-size: 1rem; color: var(--text-secondary);">
+      Or run the <a href="https://v5-trim-and-vdp-audit.vercel.app/" style="color: var(--accent);">Free VDP Audit</a>
+    </p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  &copy; 2026 AutoMagic Labs. All rights reserved. &nbsp;|&nbsp; <a href="https://www.automagiclabs.ai" style="color: var(--accent);">automagiclabs.ai</a>
+</footer>
+
+</body>
+</html>
