@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AutoMagic Labs — VDP Performance & Merchandising</title>
+<title>AutoMagic Labs — Merchandising as a Service</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* =============================================
@@ -173,14 +173,11 @@ nav {
   cursor: pointer; display: flex; align-items: center; gap: 0.3rem;
   font-size: var(--text-caption); font-weight: var(--weight-medium); color: var(--text-body);
 }
-.nav-dropdown-trigger::after { content: '▾'; font-size: 0.65rem; }
+.nav-dropdown-trigger::after { content: '\25BE'; font-size: 0.65rem; }
 .nav-dropdown-menu {
-  display: none; position: absolute; top: 100%; left: -1rem; padding-top: 0.5rem;
-  z-index: 100;
-}
-.nav-dropdown-menu-inner {
+  display: none; position: absolute; top: calc(100% + 0.75rem); left: -1rem;
   background: white; border: var(--border-default); border-radius: var(--radius-lg);
-  padding: var(--space-sm) 0; min-width: 200px; box-shadow: var(--shadow-md);
+  padding: var(--space-sm) 0; min-width: 200px; box-shadow: var(--shadow-md); z-index: 100;
 }
 .nav-dropdown:hover .nav-dropdown-menu { display: block; }
 .nav-dropdown-menu a {
@@ -188,6 +185,13 @@ nav {
   padding: 0.6rem 1.25rem; font-size: var(--text-body-sm);
 }
 .nav-dropdown-menu a:hover { background: var(--surface-off-white); }
+.dropdown-badge {
+  font-size: var(--text-nano); font-weight: var(--weight-bold);
+  padding: 0.15rem 0.5rem; border-radius: var(--radius-full);
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+}
+.badge-live { background: var(--green-bg); color: var(--green); }
+.badge-soon { background: var(--surface-off-white); color: var(--text-secondary); }
 
 /* Buttons */
 .btn-primary {
@@ -261,14 +265,22 @@ footer {
    HOMEPAGE-SPECIFIC STYLES
    ============================================= */
 
-/* Hero — centered vertical storytelling */
+/* ── ZONE 1: HERO ── */
 .hero {
-  padding: 36px var(--page-padding) 40px;
+  padding: 80px var(--page-padding) 60px;
   text-align: center;
 }
 .hero-container {
   max-width: 860px;
   margin: 0 auto;
+}
+.hero .hero-eyebrow {
+  font-size: var(--text-eyebrow);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
 }
 .hero h1 {
   font-family: var(--font-heading);
@@ -313,20 +325,14 @@ footer {
 .hero-cta-group {
   display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
 }
-.hero-supporting-stat {
-  margin-top: var(--space-lg);
-  font-size: var(--text-body-sm);
-  color: var(--text-secondary);
-  font-style: italic;
-}
 
-/* Age-comparison crossfade animation */
+/* Crossfade animation */
 .age-comparison-container {
   position: relative;
   width: 100%;
   max-width: 720px;
   aspect-ratio: 1024 / 768;
-  margin: 0 auto var(--space-md);
+  margin: 0 auto var(--space-xl);
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-xl);
@@ -349,54 +355,95 @@ footer {
   55%, 100% { opacity: 0; }
 }
 
-/* Age overlay labels */
-.age-label {
-  position: absolute;
-  bottom: 24px;
-  right: 28px;
+/* ── ZONE 2: PROFIT WRECKER ── */
+.wrecker-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  max-width: 960px;
+  margin: 0 auto;
+}
+.wrecker-card {
+  background: white;
+  border: var(--border-accent);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-align: left;
+}
+.wrecker-card-header {
+  background: var(--surface-dark);
+  color: var(--text-inverse);
+  padding: var(--space-lg) var(--space-xl);
   font-family: var(--font-heading);
-  font-size: 1.75rem;
-  font-weight: var(--weight-bold);
-  color: #FFE500;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.4);
-  pointer-events: none;
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-semibold);
 }
-.age-label-top {
-  z-index: 3;
-  animation: crossfadeCycle 8s infinite alternate ease-in-out;
-}
-.age-label-bottom {
-  z-index: 1;
-}
-@media (max-width: 600px) {
-  .age-label { font-size: 1.2rem; bottom: 16px; right: 16px; }
-}
-
-/* Placeholder for when images aren't present */
-.age-placeholder {
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, var(--surface-off-white) 0%, var(--surface-light) 100%);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  font-family: var(--font-heading);
-  color: var(--text-secondary);
-  text-align: center;
+.wrecker-card-body {
   padding: var(--space-xl);
 }
-.age-placeholder .placeholder-label {
-  font-size: var(--text-h3); font-weight: var(--weight-bold);
-  color: var(--text-body); margin-bottom: var(--space-sm);
+.wrecker-lost-profit {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+  line-height: var(--leading-snug);
+  margin-bottom: var(--space-lg);
 }
-.age-placeholder .placeholder-sub {
-  font-size: var(--text-body-sm); color: var(--text-secondary);
+.wrecker-label {
+  font-size: var(--text-nano);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+  margin-top: var(--space-md);
 }
+.wrecker-label:first-of-type { margin-top: 0; }
+.wrecker-features {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+}
+.wrecker-age-flag {
+  margin-top: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--accent-bg);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--accent);
+}
+.wrecker-closing {
+  margin-top: var(--space-lg);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+}
+.wrecker-closing strong {
+  color: var(--text-primary);
+  font-weight: var(--weight-bold);
+}
+.wrecker-cta {
+  display: block;
+  text-align: center;
+  margin-top: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--surface-dark);
+  color: var(--text-inverse);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-bold);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-normal);
+}
+.wrecker-cta:hover { background: #2A2A2A; }
 
-/* Epidemic / diagnosis stat cards */
+/* ── ZONE 3: EPIDEMIC STATS ── */
 .epidemic-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
 }
 .epidemic-stat {
@@ -406,280 +453,212 @@ footer {
   color: var(--accent);
   line-height: 1;
 }
+.objection-block {
+  max-width: 700px;
+  margin: var(--space-2xl) auto var(--space-xl);
+  padding: var(--space-lg) var(--space-xl);
+  background: var(--surface-off-white);
+  border: var(--border-default);
+  border-radius: var(--radius-md);
+  font-size: 1.05rem;
+  line-height: var(--leading-relaxed);
+  color: var(--text-body);
+}
+.product-badge-pill {
+  display: inline-block;
+  margin-bottom: var(--space-xl);
+  padding: 0.5rem 1.25rem;
+  background: var(--surface-dark);
+  color: var(--text-inverse);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-bold);
+  border-radius: var(--radius-full);
+  letter-spacing: var(--tracking-wide);
+}
 
-/* Profit Wreck cards — 2-up grid */
-.wreck-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  max-width: 1000px;
-  margin: 40px auto;
+/* ── ZONE 4: THE STACK ── */
+.stack-flow {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  max-width: 960px;
+  margin: 0 auto var(--space-2xl);
 }
-@media (max-width: 768px) {
-  .wreck-grid { grid-template-columns: 1fr; }
-}
-.wreck-card {
-  background: white;
+.stack-node {
+  flex: 1;
+  border: var(--border-dark);
   border-radius: var(--radius-lg);
-  overflow: hidden;
-  text-align: left;
-  box-shadow: var(--shadow-md);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
-.wreck-card-header {
-  background: var(--surface-dark);
-  color: var(--text-inverse);
-  padding: 16px 24px;
-  font-size: 0.95rem;
-  font-weight: var(--weight-semibold);
-}
-.wreck-card-body {
-  padding: 24px;
-  flex: 1;
-}
-.wreck-card-price {
-  color: var(--accent);
-  font-size: 1.35rem;
-  font-weight: var(--weight-bold);
+.stack-node-name {
   font-family: var(--font-heading);
-  margin-bottom: 20px;
+  font-size: var(--text-h4);
+  font-weight: var(--weight-bold);
+  color: var(--text-inverse);
+  margin-bottom: var(--space-xs);
+}
+.stack-node-name.stack-highlight { color: var(--accent); }
+.stack-node-desc {
+  font-size: var(--text-body-sm);
+  color: var(--text-inverse-muted);
   line-height: var(--leading-snug);
 }
-.wreck-card-label {
-  font-size: var(--text-eyebrow);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-top: 16px;
-  margin-bottom: 6px;
-}
-.wreck-card-body p.wreck-features {
-  font-size: var(--text-body-sm);
-  color: var(--text-body);
-  line-height: 1.5;
-  margin-bottom: 0;
-}
-.wreck-card-age {
-  background: var(--accent-bg);
-  border-left: 4px solid var(--accent);
-  padding: 12px 16px;
-  margin: 20px 0 16px;
-  font-size: var(--text-body-sm);
+.stack-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-sm);
+  font-size: 1.5rem;
   color: var(--accent);
-  font-weight: var(--weight-semibold);
-}
-.wreck-card-closing {
-  font-size: var(--text-body-sm);
-  color: var(--text-body);
-  line-height: 1.5;
-}
-.wreck-card-closing strong {
-  color: var(--text-primary);
-  display: block;
-}
-.wreck-card-footer {
-  background: var(--surface-dark);
-  padding: 14px 24px;
-  text-align: center;
-}
-.wreck-card-footer a {
-  color: var(--text-inverse);
-  font-weight: var(--weight-semibold);
-  font-size: var(--text-body-sm);
 }
 
-/* AML System / Stack */
-.system-grid {
+/* ── ZONE 5: PRODUCT CARDS ── */
+.product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-}
-.system-card h3 {
-  font-family: var(--font-heading);
-  color: var(--accent);
-  font-size: var(--text-h3);
-  font-weight: var(--weight-bold);
-}
-.system-card h4 {
-  font-family: var(--font-heading);
-  font-weight: var(--weight-bold);
-  margin: 12px 0 16px;
-}
-.system-badge {
-  font-size: 0.8rem;
-  background: var(--green-bg);
-  color: var(--green);
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  font-weight: var(--weight-semibold);
-}
-
-/* Product Cards — Zone 5 */
-.product-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-  max-width: 1100px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  max-width: 1000px;
   margin: 0 auto;
 }
 .product-card {
   background: white;
   border: var(--border-default);
   border-radius: var(--radius-lg);
-  padding: var(--space-2xl);
+  padding: var(--space-xl);
   text-align: left;
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--transition-normal);
 }
-.product-card:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-md);
-}
+.product-card:hover { border-color: var(--text-secondary); }
 .product-card-jtbd {
-  font-family: var(--font-heading);
-  font-size: var(--text-h3);
-  font-weight: var(--weight-bold);
-  color: var(--accent);
-  margin-bottom: var(--space-xs);
-}
-.product-card-descriptor {
   font-family: var(--font-heading);
   font-size: var(--text-h4);
   font-weight: var(--weight-bold);
-  margin-bottom: var(--space-lg);
+  line-height: var(--leading-snug);
+  margin-bottom: var(--space-md);
+  color: var(--text-primary);
 }
-.product-card ul {
-  list-style: none;
-  padding: 0;
+.product-card-desc {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-secondary);
   margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: var(--border-default);
 }
-.product-card ul li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #C5C0BB;
-  font-size: var(--text-body-size);
+.product-card-bullet {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-snug);
   color: var(--text-body);
+  margin-bottom: var(--space-md);
+  padding-left: 1.25rem;
+  position: relative;
 }
-.product-card ul li:last-child { border-bottom: none; }
-.product-card-separator {
-  border: none;
-  border-top: 2px solid #9A9590;
-  margin: 12px 0 16px;
+.product-card-bullet::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
 }
 .product-card-link {
+  margin-top: auto;
+  padding-top: var(--space-lg);
+  font-size: var(--text-body-sm);
   font-weight: var(--weight-semibold);
   color: var(--accent);
-  font-size: var(--text-body-size);
   transition: color var(--transition-normal);
 }
 .product-card-link:hover { color: var(--accent-hover); }
 
-/* Proof stats grid — Zone 6 */
-.proof-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-  max-width: 1000px;
-  margin: 48px auto 0;
-}
-.proof-stat-card {
-  background: var(--surface-off-white);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  text-align: center;
-}
-.proof-stat-number {
+/* ── ZONE 6: PROOF ── */
+.proof-headline-number {
   font-family: var(--font-heading);
-  font-size: 2.8rem;
+  font-size: 4.5rem;
   font-weight: var(--weight-bold);
   color: var(--accent);
   line-height: 1;
   margin-bottom: var(--space-sm);
 }
-.proof-stat-label {
-  font-size: var(--text-body-sm);
-  color: var(--text-body);
-}
-
-/* Validator quote */
-.validator-quote {
-  max-width: 700px;
-  margin: 48px auto;
-  padding: var(--space-xl) var(--space-2xl);
-  border-left: 4px solid var(--accent);
-  background: var(--accent-bg);
-  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-  font-size: 1.15rem;
-  font-style: italic;
-  color: var(--text-body);
-}
-.validator-quote cite {
-  display: block;
-  font-style: normal;
-  font-weight: var(--weight-semibold);
-  margin-top: var(--space-sm);
-  font-size: var(--text-body-sm);
-  color: var(--text-secondary);
-}
-
-/* Founder section */
-.founder-section {
-  background: var(--surface-off-white);
-  color: var(--text-primary);
-  padding: var(--section-padding) var(--page-padding);
-  border-top: var(--border-default);
-}
-.founder-inner {
-  max-width: var(--max-width-narrow);
-  margin: 0 auto;
-  text-align: center;
-}
-.founder-quote {
-  font-size: 1.25rem;
-  line-height: var(--leading-relaxed);
-  color: var(--text-body);
-  margin-bottom: var(--space-xl);
-  font-style: italic;
-}
-.founder-name {
+.proof-headline-label {
   font-family: var(--font-heading);
-  font-size: var(--text-h3);
+  font-size: var(--text-h2);
   font-weight: var(--weight-bold);
   color: var(--text-primary);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-2xl);
 }
-.founder-credentials {
-  font-size: var(--text-body-sm);
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: var(--leading-normal);
-}
-
-/* Proof story */
 .proof-story {
-  max-width: 700px;
-  margin: 40px auto;
+  max-width: var(--max-width-reading);
+  margin: 0 auto var(--space-2xl);
   text-align: left;
 }
 .proof-story p {
-  font-size: 1.1rem;
-  line-height: 1.7;
+  font-size: 1.05rem;
+  line-height: var(--leading-relaxed);
   color: var(--text-body);
   margin-bottom: var(--space-md);
 }
+.proof-story .proof-result {
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+  margin-bottom: 0;
+}
 
-/* Responsive */
+/* ── ZONE 7: FOUNDER ── */
+.founder-block {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+.founder-quote-mark {
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+}
+.founder-quote {
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-body);
+  font-style: italic;
+  margin-bottom: var(--space-xl);
+}
+.founder-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-body-size);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+.founder-creds {
+  font-size: var(--text-caption);
+  line-height: var(--leading-normal);
+  color: var(--text-secondary);
+}
+
+/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .system-grid { grid-template-columns: 1fr; }
-  .product-cards-grid { grid-template-columns: 1fr; }
-  .proof-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .zone3-info-grid { grid-template-columns: 1fr !important; }
+  .wrecker-grid { grid-template-columns: 1fr; max-width: 480px; }
+  .epidemic-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .stack-flow { flex-direction: column; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .stack-arrow { justify-content: center; transform: rotate(90deg); padding: var(--space-sm) 0; }
+  .product-grid { grid-template-columns: 1fr; max-width: 480px; }
 }
 @media (max-width: 600px) {
   .hero h1 { font-size: 2.8rem; }
-  .hero-buttons { flex-direction: column; align-items: center; }
-  .proof-stats-grid { grid-template-columns: 1fr !important; }
+  .hero-cta-group { flex-direction: column; align-items: center; }
+  .proof-headline-number { font-size: 3.5rem; }
 }
 </style>
 </head>
@@ -687,531 +666,342 @@ footer {
 
 <!-- ===== BANNER ===== -->
 <div class="site-banner">
-  <span><strong>Your VDP has gaps.</strong> Find them — free, in under 5 minutes.</span>
-  <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="banner-cta">Audit My VDP →</a>
+  <span><strong>Your VDP has gaps.</strong> Find them free, in under 5 minutes.</span>
+  <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="banner-cta">Audit My VDP &rarr;</a>
 </div>
 
 <!-- ===== NAV ===== -->
 <nav>
-  <a href="index.html" class="nav-logo"><div class="logo-mark">A</div> AutoMagic Labs</a>
+  <a href="/" class="nav-logo"><div class="logo-mark">A</div> AutoMagic Labs</a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
+    <a href="/" style="color: var(--accent); font-weight: var(--weight-semibold);">Home</a>
     <div class="nav-dropdown">
       <a class="nav-dropdown-trigger">Products</a>
-      <div class="nav-dropdown-menu"><div class="nav-dropdown-menu-inner">
-        <a href="vdp-audit.html">VDP Audit</a>
-        <a href="vdp-boost.html">VDP Boost</a>
-        <a href="turnsignal.html">TurnSignal&#8482;</a>
-        <a href="ths.html">THS</a>
-      </div></div>
+      <div class="nav-dropdown-menu">
+        <a href="/ths">THS Engine <span class="dropdown-badge badge-soon">New</span></a>
+        <a href="/vdp-audit">VDP Audit <span class="dropdown-badge badge-live">Live</span></a>
+        <a href="/vdp-boost">VDP Boost</a>
+        <a href="/turnsignal">TurnSignal&trade; <span class="dropdown-badge badge-soon">Q2 2026</span></a>
+      </div>
     </div>
-    <a href="profit-wreck.html" class="nav-cta-link">Profit Wreck</a>
-    <a href="team.html">Team</a>
-    <a href="faq.html">FAQ</a>
-    <a href="partner.html">Partner With Us</a>
+    <a href="/profit-wreck" class="nav-cta-link">Profit Wrecker</a>
+    <a href="/team">Team</a>
+    <a href="/faq">FAQ</a>
+    <a href="/partner">Partner With Us</a>
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════
-     ZONE 1 — HERO — GOT AGED?
-     ═══════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ZONE 1 · HERO — GOT AGED?                         -->
+<!-- ═══════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-container">
 
-    <!-- [1.2] H1 Headline — LOCKED -->
     <h1>Got Aged?</h1>
 
-    <!-- [1.6] Shopping is Comparing — moved below H1, orange -->
-    <p style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: var(--weight-bold); color: var(--accent); letter-spacing: var(--tracking-wide); margin-bottom: var(--space-md);">Shopping is Comparing</p>
-
-    <!-- [1.3] Crossfade Visual with text overlay -->
-    <div class="age-comparison-container" style="margin-bottom: var(--space-md);">
-      <!-- Before state (bottom layer) — 5 days -->
-      <img src="Got Aged Before.png" alt="Same VDP. Every wow-factor feature now visible. Buyer stops scrolling." class="img-bottom" loading="eager">
-      <span class="age-label age-label-bottom">5 Days in Stock</span>
-
-      <!-- After state (top layer, fades out) — 95 days -->
-      <img src="Got Aged After.png" alt="A vehicle listing stripped of features, missing photos, no price context — buyers bounce." class="img-top" loading="eager">
-      <span class="age-label age-label-top">95 Days in Stock</span>
+    <!-- Crossfade Visual -->
+    <div class="age-comparison-container">
+      <img src="Got Aged After.png" alt="The same VDP now displaying a complete feature set with Wow-Factor Features surfaced and scored" class="img-bottom" loading="eager">
+      <img src="Got Aged Before.png" alt="A used vehicle VDP showing a sparse feature list, missing packages, and no Wow-Factor Features called out" class="img-top" loading="eager">
     </div>
 
-    <!-- [1.7] Stat tagline — black -->
+    <!-- Taglines -->
     <div class="hero-taglines">
-      <span class="hero-tagline hero-tagline-black" style="font-size: 1.4rem;">80% VDPs over 60 days old have Errors</span>
+      <span class="hero-tagline hero-tagline-black">Shopping is Comparing</span>
+      <span style="font-size: 1.4rem; color: var(--text-secondary);">&rarr;</span>
+      <span class="hero-tagline">37% of VDPs are Missing Wow-Factor Features</span>
     </div>
 
-    <!-- [1.8] Subhead — LOCKED -->
+    <!-- The argument -->
     <p class="subheadline">
       If dropping price is your first move,<br>
       <span style="color: var(--accent); font-weight: 600;">you may be solving the wrong problem.</span>
     </p>
 
-    <!-- [1.9] Punchline — UPDATED -->
+    <!-- The punchline -->
     <p class="hero-punchline">Stop Discounting. <span style="color: var(--accent);">Start Auditing.</span></p>
 
-    <!-- [1.10] Primary CTA — LOCKED + [1.11] Secondary CTA — LOCKED -->
+    <!-- CTAs -->
     <div class="hero-cta-group">
-      <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary btn-primary-lg">Run Your Free VDP Audit →</a>
-      <a href="#profit-wrecks" class="btn-secondary" style="font-size: 1.15rem; padding: 1rem 2.25rem;">See Profit Wrecker of the Week</a>
+      <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary btn-primary-lg">Run Your Free VDP Audit &rarr;</a>
+      <a href="#profit-wrecker" class="btn-secondary" style="font-size: 1.15rem; padding: 1rem 2.25rem;">See Profit Wrecker of the Week</a>
     </div>
 
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     ZONE 2 — PROFIT WRECKER OF THE WEEK
-     ═══════════════════════════════════════════ -->
-<section id="profit-wrecks" style="background: var(--surface-off-white); padding: var(--section-padding) var(--page-padding);">
-  <div style="max-width: 900px; margin: 0 auto; text-align: center;">
 
-    <!-- [2.1] Eyebrow -->
-    <div class="section-eyebrow">SILENT BUT DEADLY</div>
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ZONE 2 · PROFIT WRECKER OF THE WEEK               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="profit-wrecker" style="background: var(--surface-off-white); padding: var(--section-padding) var(--page-padding);">
+  <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+    <div class="section-eyebrow">THIS WEEK'S PROFIT WRECKERS</div>
+    <h2 class="section-title" style="font-size: 2.4rem; margin-bottom: var(--space-2xl);">Profit Wrecker of the Week</h2>
 
-    <!-- [2.2] Headline -->
-    <h2 class="section-title">Profit Wrecker of the Week</h2>
+    <div class="wrecker-grid">
 
-    <!-- 2-up wreck cards -->
-    <div class="wreck-grid">
+      <!-- WRECK 1: BRONCO -->
+      <div class="wrecker-card">
+        <div class="wrecker-card-header">2023 Ford Bronco Badlands 4WD &middot; Under 40k miles</div>
+        <div class="wrecker-card-body">
+          <div class="wrecker-lost-profit">$5,180 of Wow-Factor Features missing from this VDP</div>
 
-      <!-- Wreck Card 1: Bronco -->
-      <div class="wreck-card">
-        <div class="wreck-card-header">2023 Ford Bronco Badlands 4WD · Under 40k miles</div>
-        <img src="bronco-wreck.jpg" alt="2023 Ford Bronco Badlands 4WD" style="width: 100%; height: 200px; object-fit: cover;">
-        <div class="wreck-card-body">
-          <div class="wreck-card-price">$5,180 of Wow-Factor Features missing from this VDP</div>
+          <div class="wrecker-label">Missing packages</div>
+          <div class="wrecker-features">Ford Co-Pilot360 Assist 2.0, Sasquatch Package</div>
 
-          <div class="wreck-card-label">Missing Packages</div>
-          <p class="wreck-features">Ford Co-Pilot360 Assist 2.0, Sasquatch Package</p>
+          <div class="wrecker-label">Missing installed features</div>
+          <div class="wrecker-features">Fixed Side Steps, Remote Approach Lighting, Class II Tow Hitch Receiver, BLIS Blind Spot Warning, Lane-Keeping System</div>
 
-          <div class="wreck-card-label">Missing Installed Features</div>
-          <p class="wreck-features">Fixed Side Steps, Remote Approach Lighting, Class II Tow Hitch Receiver, BLIS Blind Spot Warning, Lane-Keeping System</p>
+          <div class="wrecker-label">Other missing Wow-Factor Features</div>
+          <div class="wrecker-features">Removable Roof Panels, 6-Way Multi-Adjust Driver Seat, Pedestrian Detection Auto-Brake, Trail One-Pedal Drive</div>
 
-          <div class="wreck-card-label">Other Missing Wow-Factor Features</div>
-          <p class="wreck-features">Removable Roof Panels, 6-Way Multi-Adjust Driver Seat, Pedestrian Detection Auto-Brake, Trail One-Pedal Drive</p>
+          <div class="wrecker-age-flag">Over 60 Days on Lot. This is where errors cost the most.</div>
 
-          <div class="wreck-card-age">This VDP can't win a VDP vs VDP fight. ITS WEAK!</div>
-
-          <p class="wreck-card-closing">
+          <div class="wrecker-closing">
             Most dealers would discount this truck.<br>
             <strong>The smart ones run the audit and fix it.</strong>
-          </p>
-        </div>
-        <div class="wreck-card-footer">
-          <a href="https://v5-trim-and-vdp-audit.vercel.app/">Is your lot clean? →</a>
+          </div>
+
+          <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="wrecker-cta">Is your lot clean? &rarr;</a>
         </div>
       </div>
 
-      <!-- Wreck Card 2: Highlander -->
-      <div class="wreck-card">
-        <div class="wreck-card-header">2022 Toyota Highlander XLE AWD · 32k miles</div>
-        <img src="highlander-wreck.jpg" alt="2022 Toyota Highlander XLE AWD" style="width: 100%; height: 200px; object-fit: cover;">
-        <div class="wreck-card-body">
-          <div class="wreck-card-price">$3,740 of Wow-Factor Features missing from this VDP</div>
+      <!-- WRECK 2: HIGHLANDER -->
+      <div class="wrecker-card">
+        <div class="wrecker-card-header">2022 Toyota Highlander XLE AWD &middot; 32k miles</div>
+        <div class="wrecker-card-body">
+          <div class="wrecker-lost-profit">$3,740 of Wow-Factor Features missing from this VDP</div>
 
-          <div class="wreck-card-label">Missing Packages</div>
-          <p class="wreck-features">Toyota Safety Sense 2.5+, Premium Audio Package</p>
+          <div class="wrecker-label">Missing packages</div>
+          <div class="wrecker-features">Toyota Safety Sense 2.5+, Premium Audio Package</div>
 
-          <div class="wreck-card-label">Missing Installed Features</div>
-          <p class="wreck-features">Hands-Free Power Liftgate, Bird's Eye View Camera, Heated Steering Wheel, Panoramic Moonroof, Qi Wireless Charging</p>
+          <div class="wrecker-label">Missing installed features</div>
+          <div class="wrecker-features">Hands-Free Power Liftgate, Bird's Eye View Camera, Heated Steering Wheel, Panoramic Moonroof, Qi Wireless Charging</div>
 
-          <div class="wreck-card-label">Other Missing Wow-Factor Features</div>
-          <p class="wreck-features">Digital Rearview Mirror, Dynamic Navigation, JBL 11-Speaker Audio System</p>
+          <div class="wrecker-label">Other missing Wow-Factor Features</div>
+          <div class="wrecker-features">Digital Rearview Mirror, Dynamic Navigation, JBL 11-Speaker Audio System</div>
 
-          <div class="wreck-card-age">This XLE needs help. It's 90 days old and it's had 3 Price Drops</div>
+          <div class="wrecker-age-flag">Over 60 Days on Lot. This is where errors cost the most.</div>
 
-          <p class="wreck-card-closing">
+          <div class="wrecker-closing">
             This Highlander looks like every other one online. It's not.<br>
             <strong>The VDP buried the proof.</strong>
-          </p>
-        </div>
-        <div class="wreck-card-footer">
-          <a href="https://v5-trim-and-vdp-audit.vercel.app/">Is your lot clean? →</a>
+          </div>
+
+          <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="wrecker-cta">Is your lot clean? &rarr;</a>
         </div>
       </div>
 
     </div>
-
-    <!-- Card CTA -->
-    <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary btn-primary-lg" style="margin-top: 32px;">See Profit Wrecker of the Week</a>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     ZONE 3 — VDP AUDIT — THE DIAGNOSIS
-     ═══════════════════════════════════════════ -->
-<section style="background: linear-gradient(180deg, #EDE8E3 0%, #F2F0ED 100%); padding: var(--section-padding) var(--page-padding);">
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ZONE 3 · VDP AUDIT — THE DIAGNOSIS                -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section style="padding: var(--section-padding) var(--page-padding); background: var(--surface-white);">
   <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
-
-    <!-- [3.1] Eyebrow -->
-    <div class="section-eyebrow">MISSING FEATURES = HARDER SELLING</div>
-
-    <!-- [3.2] Headline — UPDATED -->
+    <div class="section-eyebrow">THE INVISIBLE EPIDEMIC</div>
     <h2 class="section-title" style="font-size: 2.4rem; max-width: 720px; margin: 0 auto 48px; line-height: 1.25;">
-      Your buyer knows what's on the VIN,<br>no one has time to check it.
+      Most dealers assume their VDPs are accurate.<br>They're not.
     </h2>
 
-    <!-- Stat Cards — 4 cards in narrative arc -->
     <div class="epidemic-grid">
-
-      <!-- [3.4] Stat card: 5% -->
       <div class="card" style="text-align: center;">
         <div class="epidemic-stat">5%</div>
-        <p style="margin-top: 16px; font-size: 1.05rem; color: var(--text-body);">missing features with MSRP value over $2,000</p>
+        <p style="margin-top: 16px; font-size: 1.05rem; color: var(--text-body);">of VDPs have Lost Profit of $2,000 or more</p>
       </div>
-
-      <!-- [3.5] Stat card: 20% -->
       <div class="card" style="text-align: center;">
         <div class="epidemic-stat">20%</div>
-        <p style="margin-top: 16px; font-size: 1.05rem; color: var(--text-body);">of used VDPs have 2+ key features missing</p>
+        <p style="margin-top: 16px; font-size: 1.05rem; color: var(--text-body);">of used VDPs are missing 2 or more Wow-Factor Features</p>
       </div>
-
-      <!-- [3.3] Stat card: 37% -->
       <div class="card" style="text-align: center;">
-        <div class="epidemic-stat">37%</div>
-        <p style="margin-top: 16px; font-size: 1.05rem; color: var(--text-body);">of used VDPs missing at least one key feature</p>
+        <div class="epidemic-stat">All</div>
+        <p style="margin-top: 16px; font-size: 1.05rem; color: var(--text-body);">your channels: website, AutoTrader, Cars.com, CarGurus, paid ads, and every feed-driven listing</p>
       </div>
-
-      <!-- [3.6] Stat card: 80% -->
-      <div class="card" style="text-align: center;">
-        <div class="epidemic-stat">80%</div>
-        <p style="margin-top: 16px; font-size: 1.05rem; color: var(--text-body);">of affected VDPs are over 60 days old</p>
-      </div>
-
     </div>
 
-    <!-- Two side-by-side info cards spanning full width -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 1000px; margin: 32px auto 0;">
-
-      <!-- Card: VDP Audit is automatic -->
-      <div class="card" style="text-align: center; padding: 32px;">
-        <p style="font-size: 1.1rem; line-height: 1.6; color: var(--text-body);">
-          <strong style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--accent); display: block; margin-bottom: 12px;">Our VDP Audit is Fully Automatic</strong>
-          If you DIY, a manual VDP audit takes a dedicated employee at least 30-60 minutes per VIN. Human error still compounds the problem. Our VDP Audit automatically sends your inventory manager a daily email, turning this into a 3 min job.
-        </p>
-      </div>
-
-      <!-- Card: Errors are everywhere -->
-      <div class="card" style="text-align: center; padding: 32px;">
-        <p style="font-size: 1.1rem; line-height: 1.6; color: var(--text-body);">
-          <strong style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--accent); display: block; margin-bottom: 12px;">Your VDP Errors are Everywhere</strong>
-          Your website, AutoTrader, Cars.com, CarGurus, Facebook Ads, Google Ads, every feed-driven listing.
-        </p>
-      </div>
-
+    <div class="objection-block">
+      A thorough manual VDP audit takes a dedicated employee at least 1 hour per VIN. Human error still compounds the problem.
     </div>
 
-    <!-- Badge -->
-    <p style="margin-top: 32px; display: inline-block; background: var(--green-bg); color: var(--green); padding: 12px 24px; border-radius: var(--radius-lg); font-weight: var(--weight-bold); font-size: 1.05rem; line-height: 1.5; font-family: var(--font-heading); text-align: center;">
-      This is an industry wide problem<br>All of your competitors have random VDP errors!<br>Act Now - Win more VDP battles!
-    </p>
-
-    <!-- [3.10] CTA — LOCKED -->
-    <div style="margin-top: 40px;">
-      <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary btn-primary-lg">Run Your Free VDP Audit →</a>
-    </div>
+    <div class="product-badge-pill">VDP Audit: The Industry's First Automated Merchandising Audit</div>
+    <br><br>
+    <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary btn-primary-lg">Run Your Free VDP Audit &rarr;</a>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     ZONE 4 — THE AML MERCHANDISING STACK
-     ═══════════════════════════════════════════ -->
-<section style="padding: var(--section-padding) var(--page-padding); background: white;">
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ZONE 4 · THE AML MERCHANDISING STACK              -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section style="background: var(--surface-dark); padding: var(--section-padding) var(--page-padding); color: var(--text-inverse);">
   <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
-
-    <!-- Eyebrow -->
     <div class="section-eyebrow">ONE CONNECTED SYSTEM</div>
-
-    <!-- Headline -->
-    <h2 class="section-title" style="font-size: 2.4rem; max-width: 700px; margin: 0 auto 16px;">
-      Goal: More turns with less price cuts.
+    <h2 style="font-family: var(--font-heading); font-size: 2.4rem; font-weight: var(--weight-bold); color: var(--text-inverse); max-width: 700px; margin: 0 auto 60px; line-height: var(--leading-snug);">
+      Not four products. One system built to eliminate <em style="font-style: normal; color: var(--accent);">Lost Profit.</em>
     </h2>
 
-    <!-- Sub-label -->
-    <div class="section-eyebrow" style="margin-bottom: 60px;">POWERFUL VDPs</div>
+    <p style="font-family: var(--font-heading); font-size: var(--text-h3); font-weight: var(--weight-bold); color: var(--accent); letter-spacing: var(--tracking-wide); margin-bottom: var(--space-2xl);">Fix It. Sell It. Improve It.</p>
 
-    <!-- Nodes with dark headers matching Profit Wrecker style -->
-    <div class="system-grid">
-
-      <!-- Node 1: Fix It -->
-      <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); background: white;">
-        <div style="background: var(--surface-dark); color: var(--text-inverse); padding: 14px 24px; display: flex; align-items: center; gap: 12px;">
-          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--green-bg); color: var(--green); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: var(--weight-bold); font-size: 0.95rem; flex-shrink: 0;">1</div>
-          <span style="font-weight: var(--weight-semibold); font-size: 0.95rem;">Fix It</span>
-        </div>
-        <div style="padding: 24px; text-align: center;">
-          <h4 style="font-family: var(--font-heading); font-size: var(--text-h3); font-weight: var(--weight-bold); margin-bottom: 12px;">VDP Audit</h4>
-          <p style="color: var(--text-body); margin-bottom: 16px;">Find exactly what's missing, broken, or weak.</p>
-          <a href="vdp-audit.html" style="color: var(--accent); font-weight: var(--weight-semibold); font-size: var(--text-body-sm);">Explore VDP Audit →</a>
-        </div>
+    <div class="stack-flow">
+      <div class="stack-node">
+        <div class="stack-node-name">VDP Audit</div>
+        <div class="stack-node-desc">Fix It. Find exactly what's missing, broken, or weak.</div>
       </div>
-
-      <!-- Node 2: Sell It -->
-      <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); background: white;">
-        <div style="background: var(--surface-dark); color: var(--text-inverse); padding: 14px 24px; display: flex; align-items: center; gap: 12px;">
-          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--green-bg); color: var(--green); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: var(--weight-bold); font-size: 0.95rem; flex-shrink: 0;">2</div>
-          <span style="font-weight: var(--weight-semibold); font-size: 0.95rem;">Sell It</span>
-        </div>
-        <div style="padding: 24px; text-align: center;">
-          <h4 style="font-family: var(--font-heading); font-size: var(--text-h3); font-weight: var(--weight-bold); margin-bottom: 12px;">VDP Boost</h4>
-          <p style="color: var(--text-body); margin-bottom: 16px;">We help your VDP win more VDP Battles.</p>
-          <a href="vdp-boost.html" style="color: var(--accent); font-weight: var(--weight-semibold); font-size: var(--text-body-sm);">Explore VDP Boost →</a>
-        </div>
+      <div class="stack-arrow">&rarr;</div>
+      <div class="stack-node">
+        <div class="stack-node-name">VDP Boost</div>
+        <div class="stack-node-desc">Sell It. Surface the value where shoppers actually look.</div>
       </div>
-
-      <!-- Node 3: Improve It -->
-      <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); background: white;">
-        <div style="background: var(--surface-dark); color: var(--text-inverse); padding: 14px 24px; display: flex; align-items: center; gap: 12px;">
-          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--green-bg); color: var(--green); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: var(--weight-bold); font-size: 0.95rem; flex-shrink: 0;">3</div>
-          <span style="font-weight: var(--weight-semibold); font-size: 0.95rem;">Improve It</span>
-        </div>
-        <div style="padding: 24px; text-align: center;">
-          <h4 style="font-family: var(--font-heading); font-size: var(--text-h3); font-weight: var(--weight-bold); margin-bottom: 12px;">TurnSignal</h4>
-          <p style="color: var(--text-body); margin-bottom: 16px;">Inventory Performance Analysis that is driven by your store's data.</p>
-          <a href="turnsignal.html" style="color: var(--accent); font-weight: var(--weight-semibold); font-size: var(--text-body-sm);">Explore TurnSignal →</a>
-        </div>
+      <div class="stack-arrow">&rarr;</div>
+      <div class="stack-node">
+        <div class="stack-node-name">TurnSignal</div>
+        <div class="stack-node-desc">Improve It. Spot weak VDP performance before it costs you.</div>
       </div>
     </div>
 
-    <!-- VDP Boost Feature List -->
-    <div style="max-width: 800px; margin: 48px auto 0; text-align: left;">
-      <h3 style="font-family: var(--font-heading); font-size: var(--text-h3); font-weight: var(--weight-bold); margin-bottom: 24px; text-align: center;">VDP Boost Features</h3>
-      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 0; border: var(--border-default); border-radius: var(--radius-lg); overflow: hidden;">
-        <div style="background: var(--surface-dark); color: var(--text-inverse); padding: 12px 20px; font-weight: var(--weight-semibold); font-size: var(--text-body-sm);">Sub-Product</div>
-        <div style="background: var(--surface-dark); color: var(--text-inverse); padding: 12px 20px; font-weight: var(--weight-semibold); font-size: var(--text-body-sm);">What It Does</div>
-
-        <div style="padding: 14px 20px; font-weight: var(--weight-semibold); border-bottom: var(--border-default); color: var(--accent);">Photo Boost</div>
-        <div style="padding: 14px 20px; border-bottom: var(--border-default); color: var(--text-body);">Put your 'Wow Factor' Options on the photos!</div>
-
-        <div style="padding: 14px 20px; font-weight: var(--weight-semibold); border-bottom: var(--border-default); color: var(--accent); background: var(--surface-off-white);">CPO Boost</div>
-        <div style="padding: 14px 20px; border-bottom: var(--border-default); color: var(--text-body); background: var(--surface-off-white);">Certified Pre-Owned benefits are amazing, we love CPO!</div>
-
-        <div style="padding: 14px 20px; font-weight: var(--weight-semibold); border-bottom: var(--border-default); color: var(--accent);">Recon Boost</div>
-        <div style="padding: 14px 20px; border-bottom: var(--border-default); color: var(--text-body);">Make your reconditioning spend a trust/value signal</div>
-
-        <div style="padding: 14px 20px; font-weight: var(--weight-semibold); color: var(--accent); background: var(--surface-off-white);">Dealer Notes Boost</div>
-        <div style="padding: 14px 20px; color: var(--text-body); background: var(--surface-off-white);">No one makes Dealer Notes as powerful as we do.</div>
-      </div>
-      <div style="text-align: center; margin-top: 20px;">
-        <a href="vdp-boost.html" style="color: var(--accent); font-weight: var(--weight-semibold); font-size: var(--text-body-sm);">Explore VDP Boost →</a>
-      </div>
+    <div style="margin-top: var(--space-xl); padding: var(--space-lg) var(--space-xl); border: var(--border-dark); border-radius: var(--radius-lg); display: inline-block;">
+      <div class="stack-node-name stack-highlight" style="margin-bottom: var(--space-xs);">THS Engine</div>
+      <div style="font-size: var(--text-body-sm); color: var(--text-inverse-muted);">The intelligence layer that powers all three steps. Built on OEM build sheet data. Ranks features by what actually drives buyer decisions.</div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     ZONE 5 — PRODUCT CARDS — THREE MOVES
-     ═══════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ZONE 5 · PRODUCT CARDS — THREE MOVES              -->
+<!-- ═══════════════════════════════════════════════════ -->
 <section style="background: var(--surface-off-white); padding: var(--section-padding) var(--page-padding);">
   <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+    <div class="section-eyebrow">THREE MOVES</div>
+    <h2 class="section-title" style="margin-bottom: var(--space-2xl);">What each product does <em>for you</em></h2>
 
-    <!-- Eyebrow -->
-    <div class="section-eyebrow">DOES IT SELL CARS?</div>
+    <div class="product-grid">
 
-    <!-- Section headline -->
-    <h2 class="section-title" style="margin-bottom: 48px;">What each product does for you</h2>
-
-    <div class="product-cards-grid">
-
-      <!-- Card 1: VDP Audit -->
+      <!-- VDP Audit (Fix It) -->
       <div class="product-card">
-        <div style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: var(--weight-bold); margin-bottom: var(--space-sm);">
-          <span style="color: var(--accent);">Fix It</span> <span style="color: var(--text-primary);">– VDP Audit</span>
-        </div>
-        <div class="product-card-descriptor" style="font-size: 1rem; font-weight: var(--weight-medium); color: var(--text-body);">
-          <br>The Up Bus doesn't stop for weak VDPs.
-        </div>
-        <hr class="product-card-separator">
-        <ul>
-          <li>The industry's first automated VDP audit. Every VIN, every feature, every day.</li>
-          <li>Our VDP audit obsesses over missing Wow-Factor Features &amp; Packages</li>
-          <li>The car doesn't sell itself. The VDP has to.</li>
-        </ul>
-        <a href="vdp-audit.html" class="product-card-link">Explore VDP Audit →</a>
+        <div class="product-card-jtbd">Find the Lost Profit before it walks off your lot</div>
+        <div class="product-card-desc">The industry's first automated VDP audit. Every VIN, every feature, every week.</div>
+        <div class="product-card-bullet">Audits your full inventory in minutes, not 1 hour per VIN</div>
+        <div class="product-card-bullet">Finds missing Wow-Factor Features, packages, and MSRP errors</div>
+        <div class="product-card-bullet">Flags Profit Wreckers aging past 60 days before they require a price cut</div>
+        <a href="/vdp-audit" class="product-card-link">Explore VDP Audit &rarr;</a>
       </div>
 
-      <!-- Card 2: VDP Boost -->
+      <!-- VDP Boost (Sell It) -->
       <div class="product-card">
-        <div style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: var(--weight-bold); margin-bottom: var(--space-sm);">
-          <span style="color: var(--accent);">Sell It</span> <span style="color: var(--text-primary);">– VDP Boost</span>
-        </div>
-        <div class="product-card-descriptor" style="font-size: 1rem; font-weight: var(--weight-medium); color: var(--text-body);">
-          <br>Make the VDP Stand Tall.
-        </div>
-        <hr class="product-card-separator">
-        <ul>
-          <li>Shoppers compare. WIN MORE VDP WARS.</li>
-          <li>Shoppers love your pictures. Let's leverage that.</li>
-          <li>VDP BOOST is old school. Better story. Better price defense.</li>
-        </ul>
-        <a href="vdp-boost.html" class="product-card-link">Explore VDP Boost →</a>
+        <div class="product-card-jtbd">Make every feature count before the shopper decides</div>
+        <div class="product-card-desc">OEM build sheet data, scored and structured for the shopper.</div>
+        <div class="product-card-bullet">Turns raw OEM data into a Pristine VDP</div>
+        <div class="product-card-bullet">Surfaces Wow-Factor Features shoppers actually search for</div>
+        <div class="product-card-bullet">Eliminates the manual data entry that creates errors</div>
+        <a href="/vdp-boost" class="product-card-link">Explore VDP Boost &rarr;</a>
       </div>
 
-      <!-- Card 3: TurnSignal -->
+      <!-- TurnSignal (Improve It) -->
       <div class="product-card">
-        <div style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: var(--weight-bold); margin-bottom: var(--space-sm);">
-          <span style="color: var(--accent);">Improve It</span> <span style="color: var(--text-primary);">– TurnSignal</span>
-        </div>
-        <div class="product-card-descriptor" style="font-size: 1rem; font-weight: var(--weight-medium); color: var(--text-body);">
-          <br>Improving Your Sales Machine. More Turns, Less Discounts.
-        </div>
-        <hr class="product-card-separator">
-        <ul>
-          <li>3 Years of Your Sales +</li>
-          <li>Google Analytics +</li>
-          <li>Uncle Joe's Secret Algo Sauce!</li>
-        </ul>
-        <a href="turnsignal.html" class="product-card-link">Explore TurnSignal →</a>
+        <div class="product-card-jtbd">See which VINs shoppers keep coming back to, and which they skip</div>
+        <div class="product-card-desc">GA4-powered merchandising intelligence that maps shopper behavior to individual VINs.</div>
+        <div class="product-card-bullet">Tracks which VINs pull repeat visitors, your clearest signal of buyer intent</div>
+        <div class="product-card-bullet">Spots ghost VDPs and low-attention inventory before they age out</div>
+        <div class="product-card-bullet">Connects shopper behavior directly to merchandising action</div>
+        <a href="/turnsignal" class="product-card-link">Explore TurnSignal &rarr;</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     ZONE 6 — PROOF — THE EVIDENCE FLOOR
-     ═══════════════════════════════════════════ -->
-<section style="padding: var(--section-padding) var(--page-padding); background: white;">
-  <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
 
-    <!-- [6.1] Eyebrow — UPDATED -->
-    <div class="section-eyebrow">REAL RESULTS (YOUR MILEAGE MAY VARY ;-)</div>
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ZONE 6 · PROOF — THE EVIDENCE FLOOR               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section style="padding: var(--section-padding) var(--page-padding); background: var(--surface-white);">
+  <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+    <div class="section-eyebrow">REAL RESULTS</div>
 
-    <!-- [6.2] Proof headline number — UPDATED -->
-    <div style="font-family: var(--font-heading); font-size: 5rem; font-weight: var(--weight-bold); color: var(--accent); line-height: 1; margin-bottom: var(--space-sm);">
-      +63%
-    </div>
+    <div class="proof-headline-number">63%</div>
+    <div class="proof-headline-label">used car sales growth. Reymore Chevrolet.</div>
 
-    <!-- [6.3] Proof headline label — UPDATED -->
-    <p style="font-size: 1.3rem; color: var(--text-body); margin-bottom: 48px;">
-      used car sales growth at Reymore Chevrolet.
-    </p>
-
-    <!-- [6.4–6.6] Story sentences -->
     <div class="proof-story">
-      <p>Reymore Chevrolet's management was eager for change. Reymore went all in.</p>
-      <p>Wow-Factor Features that were missing was now their advantage! They are winning the VDP WARS.</p>
+      <p>Reymore Chevrolet's used VDPs were missing Wow-Factor Features their shoppers were actively searching for.</p>
+      <p>They ran VDP Audit across their full inventory and activated VDP Boost on every flagged VIN.</p>
+      <p class="proof-result">Used car sales grew 63%.</p>
     </div>
 
-    <!-- Proof stat cards -->
-    <div class="proof-stats-grid" style="grid-template-columns: repeat(3, 1fr);">
-
-      <!-- Stat: 50% more pictures -->
-      <div class="proof-stat-card">
-        <div class="proof-stat-number">50%</div>
-        <p class="proof-stat-label" style="font-weight: var(--weight-semibold); margin-bottom: 8px;">more pictures</p>
-        <p class="proof-stat-label">VDP Boost shoppers look at 50% more pictures, than non Boosted VDPs.</p>
-      </div>
-
-      <!-- Stat: 39% higher VSR-to-VDP -->
-      <div class="proof-stat-card">
-        <div class="proof-stat-number">39%</div>
-        <p class="proof-stat-label" style="font-weight: var(--weight-semibold); margin-bottom: 8px;">higher VSR-to-VDP conversion</p>
-        <p class="proof-stat-label">VDP Boost helps keep your shoppers connected to your site.</p>
-      </div>
-
-      <!-- Stat: Days on Lot -->
-      <div class="proof-stat-card">
-        <p class="proof-stat-label" style="font-weight: var(--weight-semibold); text-transform: uppercase; letter-spacing: var(--tracking-wider); font-size: var(--text-eyebrow); margin-bottom: 12px;">Days on Lot</p>
-        <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
-          <div>
-            <p style="font-size: var(--text-body-sm); color: var(--text-secondary); margin-bottom: 4px;">Before</p>
-            <div class="proof-stat-number" style="font-size: 2.2rem;">63</div>
-          </div>
-          <span style="font-size: 1.5rem; color: var(--accent);">→</span>
-          <div>
-            <p style="font-size: var(--text-body-sm); color: var(--text-secondary); margin-bottom: 4px;">After</p>
-            <div class="proof-stat-number" style="font-size: 2.2rem;">36</div>
-          </div>
-        </div>
-        <p class="proof-stat-label" style="margin-top: 8px;">days</p>
-      </div>
-
-    </div>
-
-    <!-- [6.11] Third-party validator -->
-    <div class="validator-quote">
-      "These numbers are extraordinary."
-      <cite>George Nenni, CEO, Generations Digital</cite>
-    </div>
-
-    <!-- THS Engine descriptor — moved here from Zone 4 -->
-    <p style="margin-top: 0; margin-bottom: 48px; font-size: 1.15rem; font-weight: var(--weight-medium); color: var(--text-body); max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-      The core of AML is powered by our industry 1st <strong>THS Engine</strong>.<br>This project took our team 3 years to rank 45,000 features,<br>each one numerically ranked by our customer demand score,<br>affectionately called "Wow-Factor Features." It's an intelligence layer,<br>it's AML's secret sauce,<br>we call it the "Treasure Hunter Score" (THS).
-    </p>
-
-    <!-- CTA -->
-    <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary btn-primary-lg">Run your free audit →</a>
-
+    <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary btn-primary-lg">Run your free audit &rarr;</a>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     ZONE 8 — FINAL CTA — THE HANDSHAKE
-     ═══════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ZONE 7 · FOUNDER CREDIBILITY                      -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section style="background: var(--surface-off-white); padding: var(--section-padding) var(--page-padding);">
+  <div class="founder-block">
+    <div class="section-eyebrow">BUILT FROM THE INSIDE</div>
+
+    <div class="founder-quote-mark">&ldquo;</div>
+    <div class="founder-quote">
+      I spent 30 years watching dealers discount cars that should have sold at full margin. The problem was never the price. It was the VDP. Shoppers couldn't see what made the car worth it. So I built the tool I always wished existed.
+    </div>
+    <div class="founder-origin" style="font-family: var(--font-body); font-size: var(--text-body-lg); color: var(--text-body); line-height: var(--leading-normal); margin-top: var(--space-lg);">
+      Joe saw this problem first at Cars.com &mdash; 142 dealers, 17,485 units, 37% with missing features. He is building AML&rsquo;s systems to fix it.
+    </div>
+
+    <div class="founder-name">Joe Pistell</div>
+    <div class="founder-creds">
+      Founder &amp; CEO &middot; Former Head of Marketplace, Cars.com &middot; Sr. Director of Innovation, Cox/Dealer.com &middot; 2 patents &middot; NADA Best of Show
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ZONE 7B · WORKS WITH YOUR STACK                   -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section style="padding: var(--space-3xl) var(--page-padding); text-align: center;">
+  <div style="max-width: var(--max-width-narrow); margin: 0 auto;">
+    <h2 style="font-family: var(--font-heading); font-size: var(--text-h3); font-weight: var(--weight-bold); margin-bottom: var(--space-md);">Works with your stack</h2>
+    <p style="font-family: var(--font-body); font-size: var(--text-body-lg); color: var(--text-body); line-height: var(--leading-normal);">AML products are compatible with nearly every vendor in automotive &mdash; including website providers like Dealer.com, DealerOn, and Dealer Inspire, and inventory systems like Homenet and vAuto. Want confirmation? Click Ask Joe Anything and he&rsquo;ll get back to you.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ZONE 8 · FINAL CTA — THE HANDSHAKE               -->
+<!-- ═══════════════════════════════════════════════════ -->
 <section class="footer-cta" style="padding: 100px var(--page-padding);">
   <div style="max-width: 700px; margin: 0 auto;">
+    <div class="section-eyebrow" style="color: var(--accent); margin-bottom: var(--space-lg);">FOR PIONEERING DEALERS</div>
 
-    <!-- [8.1] Eyebrow — UPDATED -->
-    <div class="section-eyebrow" style="color: var(--accent);">ARE WE A FIT?</div>
-
-    <!-- [8.2] Headline — UPDATED -->
-    <h2 style="font-size: 2.4rem; line-height: var(--leading-snug); margin-bottom: 24px;">
-      VIN Explosions are weak.<br>VDPs are Polluted.<br>AML fixes this.
+    <h2 style="font-size: 2.4rem; line-height: var(--leading-snug); margin-bottom: var(--space-xl);">
+      We're looking for dealers who see what others don't.
     </h2>
 
-    <!-- [8.3] Supporting line — UPDATED -->
-    <p style="font-size: 1.15rem; max-width: 620px; margin: 0 auto 32px;">
-      Your audit is free. What you find might piss you off.
+    <p style="font-size: 1.15rem; max-width: 520px; margin: 0 auto var(--space-md);">
+      Start with a free audit. Know what's on your lot. Fix it before the next shopper does.
     </p>
 
-    <!-- [8.4] Punchline — LOCKED -->
-    <p style="font-family: var(--font-heading); font-size: var(--text-h3); font-weight: var(--weight-bold); margin-bottom: 40px;">
-      Stop Discounting. <span style="color: var(--accent);">Start Auditing.</span>
+    <p style="font-family: var(--font-heading); font-size: var(--text-h4); font-weight: var(--weight-bold); color: var(--accent); margin-bottom: var(--space-2xl);">
+      Stop Discounting. Start Auditing.
     </p>
 
-    <!-- [8.5] Primary CTA — LOCKED -->
-    <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary" style="font-size: 1.15rem; padding: 1.2rem 3rem;">Run Your Free VDP Audit →</a>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     ZONE 7 — FOUNDER CREDIBILITY (bottom position)
-     ═══════════════════════════════════════════ -->
-<section class="founder-section">
-  <div class="founder-inner">
-
-    <!-- [7.1] Eyebrow -->
-    <div class="section-eyebrow" style="color: var(--accent);">BUILT FROM THE INSIDE</div>
-
-    <!-- [7.2] Founder quote -->
-    <p class="founder-quote">
-      "I spent 30 years watching dealers discount cars that should have sold at full margin. The problem was never the price. It was the VDP. Shoppers couldn't see what made the car worth it. So I built the tool I always wished existed."
-    </p>
-
-    <!-- [7.3] Founder name -->
-    <p class="founder-name">Joe Pistell</p>
-
-    <!-- [7.4] Founder credentials — reformatted -->
-    <p class="founder-credentials">
-      Founder &amp; CEO<br>
-      Former Head of Marketplace, Cars.com<br>
-      Sr. Director of Innovation, Cox/Dealer.com<br>
-      2 patents · NADA Best of Show<br>
-      10 years as NY dealer group Marketing Director
-    </p>
+    <a href="https://v5-trim-and-vdp-audit.vercel.app/" class="btn-primary" style="font-size: 1.15rem; padding: 1.2rem 3rem;">Run Your Free VDP Audit &rarr;</a>
 
     <p style="margin-top: var(--space-xl); font-size: 1rem;">
-      <a href="mailto:vdpaudit@automagiclabs.ai" style="color: var(--accent); font-weight: var(--weight-semibold);">Or talk to AML directly →</a>
+      <a href="mailto:vdpaudit@automagiclabs.ai" style="color: var(--accent);">Or talk to AML directly &rarr;</a>
     </p>
-
   </div>
 </section>
+
 
 <!-- ===== FOOTER ===== -->
 <footer>
-  <p>&copy; 2026 AutoMagic Labs. All rights reserved. &nbsp;|&nbsp; <a href="https://www.automagiclabs.ai" style="color: var(--accent);">automagiclabs.ai</a></p>
+  &copy; 2026 AutoMagic Labs. All rights reserved. &nbsp;|&nbsp; <a href="https://www.automagiclabs.ai" style="color: var(--accent);">automagiclabs.ai</a>
 </footer>
 
 </body>
