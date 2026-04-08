@@ -265,40 +265,24 @@ nav {
 /* Products dropdown */
 .nav-dropdown { position: relative; }
 .nav-dropdown-trigger {
-  cursor: pointer;
-  display: flex; align-items: center; gap: 0.3rem;
+  cursor: pointer; display: flex; align-items: center; gap: 0.3rem;
+  font-size: var(--text-caption); font-weight: var(--weight-medium); color: var(--text-body);
 }
-.nav-dropdown-trigger::after {
-  content: '▾'; font-size: 0.65rem;
-}
+.nav-dropdown-trigger::after { content: '▾'; font-size: 0.65rem; }
 .nav-dropdown-menu {
-  display: none;
-  position: absolute; top: calc(100% + 0.75rem); left: -1rem;
-  background: white;
-  border: var(--border-default);
-  border-radius: var(--radius-lg);
-  padding: var(--space-sm) 0;
-  min-width: 200px;
-  box-shadow: var(--shadow-md);
+  display: none; position: absolute; top: 100%; left: -1rem; padding-top: 0.5rem;
   z-index: 100;
+}
+.nav-dropdown-menu-inner {
+  background: white; border: var(--border-default); border-radius: var(--radius-lg);
+  padding: var(--space-sm) 0; min-width: 200px; box-shadow: var(--shadow-md);
 }
 .nav-dropdown:hover .nav-dropdown-menu { display: block; }
 .nav-dropdown-menu a {
   display: flex; align-items: center; gap: var(--space-sm);
-  padding: 0.6rem 1.25rem;
-  font-size: var(--text-body-sm);
+  padding: 0.6rem 1.25rem; font-size: var(--text-body-sm);
 }
 .nav-dropdown-menu a:hover { background: var(--surface-off-white); }
-.dropdown-badge {
-  font-size: var(--text-nano);
-  font-weight: var(--weight-bold);
-  padding: 0.15rem 0.5rem;
-  border-radius: var(--radius-full);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-}
-.badge-live { background: var(--green-bg); color: var(--green); }
-.badge-soon { background: var(--surface-off-white); color: var(--text-secondary); }
 
 /* =============================================
    BUTTONS
@@ -893,34 +877,25 @@ footer {
 
 <!-- ===== NAV ===== -->
 <nav>
-  <div class="nav-logo">
+  <a href="index.html" class="nav-logo">
     <div class="logo-mark">A</div>
     AutoMagic Labs
-  </div>
+  </a>
   <div class="nav-links">
-    <a href="/">Home</a>
+    <a href="index.html">Home</a>
     <div class="nav-dropdown">
-      <div class="nav-dropdown-trigger">Products</div>
-      <div class="nav-dropdown-menu">
-        <a href="/ths">
-          THS
-          <span class="dropdown-badge badge-new">NEW</span>
-        </a>
-        <a href="https://v5-trim-and-vdp-audit.vercel.app/">
-          VDP Audit
-          <span class="dropdown-badge badge-live">Live</span>
-        </a>
-        <a href="/vdp-boost">VDP Boost</a>
-        <a href="/turnsignal">
-          TurnSignal™
-          <span class="dropdown-badge badge-soon">Coming Soon</span>
-        </a>
-      </div>
+      <a class="nav-dropdown-trigger">Products</a>
+      <div class="nav-dropdown-menu"><div class="nav-dropdown-menu-inner">
+        <a href="vdp-audit.html">VDP Audit</a>
+        <a href="vdp-boost.html">VDP Boost</a>
+        <a href="turnsignal.html">TurnSignal&#8482;</a>
+        <a href="ths.html">THS</a>
+      </div></div>
     </div>
-    <a href="/profit-wreck" class="nav-cta-link">Profit Wreck</a>
-    <a href="/team">Team</a>
-    <a href="/faq">FAQ</a>
-    <a href="/partner">Partner With Us</a>
+    <a href="profit-wreck.html" class="nav-cta-link">Profit Wreck</a>
+    <a href="team.html">Team</a>
+    <a href="faq.html">FAQ</a>
+    <a href="partner.html">Partner With Us</a>
   </div>
 </nav>
 
@@ -1049,11 +1024,11 @@ footer {
 <!-- ===== FAQ ===== -->
 <section style="max-width: var(--max-width-narrow); margin: 0 auto; padding: var(--section-padding) var(--page-padding);">
   <h2 style="font-family: var(--font-heading); font-size: var(--text-h2); font-weight: var(--weight-bold); margin-bottom: var(--space-2xl);">VDP Boost FAQ</h2>
-  <div class="faq-item"><div class="faq-q">How does Boost content get onto my VDPs?</div><div class="faq-a">The same way your inventory already moves. Your inventory management system &mdash; Homenet or vAuto &mdash; sends AML your daily inventory feed. AML enriches every VIN: annotated photos with your highest-value features highlighted, a branded Hero image, and ranked dealer notes built from the actual build sheet. Then we send it all back through the same system. Homenet updates your VDPs immediately. No plugins. No website provider calls. Your pipeline already exists. AML rides it.</div></div>
-  <div class="faq-item"><div class="faq-q">What does onboarding look like?</div><div class="faq-a">Three steps. Your team&rsquo;s involvement is minimal. Step 1: We connect to your existing inventory feed &mdash; Homenet or vAuto. Your account manager authorizes the export to AML. No new software, no IT tickets. Step 2: AML receives your daily inventory, enriches every VIN with Boost content, and sends it back through the same feed. Step 3: Your VDPs update automatically. From that point forward, every VIN gets enriched as it enters inventory. Your team manages by exception, not by hand. You&rsquo;re live ASAP &mdash; in under a week in most cases.</div></div>
+  <div class="faq-item"><div class="faq-q">How does Boost content get onto my VDPs?</div><div class="faq-a">The same way your inventory already moves. Your inventory management system — Homenet or vAuto — sends AML your daily inventory feed. AML enriches every VIN: annotated photos with your highest-value features highlighted, a branded Hero image, and ranked dealer notes built from the actual build sheet. Then we send it all back through the same system. Homenet updates your VDPs immediately. No plugins. No website provider calls. Your pipeline already exists. AML rides it.</div></div>
+  <div class="faq-item"><div class="faq-q">What does onboarding look like?</div><div class="faq-a">Three steps. Your team's involvement is minimal. Step 1: We connect to your existing inventory feed — Homenet or vAuto. Your account manager authorizes the export to AML. No new software, no IT tickets. Step 2: AML receives your daily inventory, enriches every VIN with Boost content, and sends it back through the same feed. Step 3: Your VDPs update automatically. From that point forward, every VIN gets enriched as it enters inventory. Your team manages by exception, not by hand. You're live ASAP — in under a week in most cases.</div></div>
   <div class="faq-item"><div class="faq-q">Does Boost content show up on third-party sites?</div><div class="faq-a">Everywhere your VDPs are seen now, so is your VDP Boost merchandising. Including, but not limited to: CarGurus, Edmunds, Cars.com, AutoTrader, TrueCar, Carfax, Kelley Blue Book, AutoTempest, Facebook Marketplace, and Google Vehicle Listing Ads.</div></div>
-  <div class="faq-item"><div class="faq-q">Is Boost content compliant with OEM co-op programs?</div><div class="faq-a">No known risk. AML has worked with OEM art requirements in the past &mdash; fonts, colors, brand standards. Boost content is designed to work within those guidelines. AML&rsquo;s CPO Boost is a particularly strong fit for OEM programs, highlighting certified pre-owned benefits the way OEMs want them presented.</div></div>
-  <div class="faq-item"><div class="faq-q">Does Photo Boost work on mobile?</div><div class="faq-a">Photo Boosted features are added directly to the photo, not layered on top with code. 100% visibility everywhere &mdash; desktop, mobile, in-app browsers, classified sites.</div></div>
+  <div class="faq-item"><div class="faq-q">Is Boost content compliant with OEM co-op programs?</div><div class="faq-a">No known risk. AML has worked with OEM art requirements in the past — fonts, colors, brand standards. Boost content is designed to work within those guidelines. AML's CPO Boost is a particularly strong fit for OEM programs, highlighting certified pre-owned benefits the way OEMs want them presented.</div></div>
+  <div class="faq-item"><div class="faq-q">Does Photo Boost work on mobile?</div><div class="faq-a">Photo Boosted features are added directly to the photo, not layered on top with code. 100% visibility everywhere — desktop, mobile, in-app browsers, classified sites.</div></div>
 </section>
 
 <!-- ===== FOOTER CTA ===== -->
@@ -1067,7 +1042,7 @@ footer {
 </section>
 
 <footer>
-  &copy; 2026 AutoMagic Labs. All rights reserved. &nbsp;|&nbsp; <a href="https://www.automagiclabs.ai" style="color: var(--accent);">automagiclabs.ai</a>
+  <p>&copy; 2026 AutoMagic Labs. All rights reserved. &nbsp;|&nbsp; <a href="https://www.automagiclabs.ai" style="color: var(--accent);">automagiclabs.ai</a></p>
 </footer>
 
 </body>

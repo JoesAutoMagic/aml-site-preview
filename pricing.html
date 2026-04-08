@@ -101,35 +101,38 @@ nav {
   display: flex; align-items: center; gap: var(--space-sm);
 }
 .logo-mark {
-  background: var(--surface-dark); color: var(--text-inverse);
-  width: 32px; height: 32px; border-radius: var(--radius-md);
+  background: var(--accent); color: var(--text-inverse);
+  width: 28px; height: 28px; border-radius: 6px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; font-weight: var(--weight-bold);
+  font-size: 0.75rem; font-weight: var(--weight-bold);
 }
-.nav-links { display: flex; align-items: center; gap: var(--space-xl); font-size: var(--text-body-sm); }
-.nav-links a { color: var(--text-body); font-weight: var(--weight-medium); }
+.nav-links { display: flex; gap: var(--space-xl); align-items: center; }
+.nav-links a {
+  font-size: var(--text-caption); font-weight: var(--weight-medium);
+  color: var(--text-body); transition: color var(--transition-normal);
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-cta-link { font-weight: var(--weight-semibold) !important; color: var(--accent) !important; }
 .nav-dropdown { position: relative; }
-.nav-dropdown-trigger { cursor: pointer; color: var(--text-body); font-weight: var(--weight-medium); }
+.nav-dropdown-trigger {
+  cursor: pointer; display: flex; align-items: center; gap: 0.3rem;
+  font-size: var(--text-caption); font-weight: var(--weight-medium); color: var(--text-body);
+}
+.nav-dropdown-trigger::after { content: '▾'; font-size: 0.65rem; }
 .nav-dropdown-menu {
-  display: none; position: absolute; top: 100%; left: 0;
-  background: var(--surface-white); border: var(--border-default);
-  border-radius: var(--radius-md); padding: var(--space-sm) 0;
-  min-width: 200px; box-shadow: var(--shadow-md); z-index: 50;
+  display: none; position: absolute; top: 100%; left: -1rem; padding-top: 0.5rem;
+  z-index: 100;
+}
+.nav-dropdown-menu-inner {
+  background: white; border: var(--border-default); border-radius: var(--radius-lg);
+  padding: var(--space-sm) 0; min-width: 200px; box-shadow: var(--shadow-md);
 }
 .nav-dropdown:hover .nav-dropdown-menu { display: block; }
 .nav-dropdown-menu a {
   display: flex; align-items: center; gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-lg); font-size: var(--text-body-sm);
+  padding: 0.6rem 1.25rem; font-size: var(--text-body-sm);
 }
 .nav-dropdown-menu a:hover { background: var(--surface-off-white); }
-.dropdown-badge {
-  font-size: var(--text-nano); font-weight: var(--weight-semibold);
-  padding: 2px 8px; border-radius: var(--radius-full);
-  text-transform: uppercase; letter-spacing: var(--tracking-wider);
-}
-.badge-live { background: #E6F9E8; color: #1A7A2B; }
-.badge-soon { background: var(--yellow-bg); color: var(--yellow); }
-.nav-cta-link { color: var(--accent) !important; font-weight: var(--weight-semibold) !important; }
 
 .btn-primary {
   display: inline-block; background: var(--accent); color: var(--text-inverse);
@@ -160,23 +163,22 @@ footer {
 
 <!-- ===== NAV ===== -->
 <nav>
-  <a href="/" class="nav-logo"><div class="logo-mark">A</div> AutoMagic Labs</a>
+  <a href="index.html" class="nav-logo"><div class="logo-mark">A</div> AutoMagic Labs</a>
   <div class="nav-links">
-    <a href="/">Home</a>
+    <a href="index.html">Home</a>
     <div class="nav-dropdown">
       <a class="nav-dropdown-trigger">Products</a>
-      <div class="nav-dropdown-menu">
-        <a href="/ths">THS Engine <span class="dropdown-badge badge-soon">New</span></a>
-        <a href="/vdp-audit">VDP Audit <span class="dropdown-badge badge-live">Live</span></a>
-        <a href="/vdp-boost">VDP Boost</a>
-        <a href="/turnsignal">TurnSignal&trade; <span class="dropdown-badge badge-soon">Q2 2026</span></a>
-      </div>
+      <div class="nav-dropdown-menu"><div class="nav-dropdown-menu-inner">
+        <a href="vdp-audit.html">VDP Audit</a>
+        <a href="vdp-boost.html">VDP Boost</a>
+        <a href="turnsignal.html">TurnSignal&#8482;</a>
+        <a href="ths.html">THS</a>
+      </div></div>
     </div>
-    <a href="/profit-wreck" class="nav-cta-link">Profit Wrecker</a>
-    <a href="/team">Team</a>
-    <a href="/faq">FAQ</a>
-    <a href="/pricing" style="color: var(--accent); font-weight: var(--weight-semibold);">Pricing</a>
-    <a href="/partner">Partner With Us</a>
+    <a href="profit-wreck.html" class="nav-cta-link">Profit Wreck</a>
+    <a href="team.html">Team</a>
+    <a href="faq.html">FAQ</a>
+    <a href="partner.html">Partner With Us</a>
   </div>
 </nav>
 

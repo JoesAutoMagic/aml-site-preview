@@ -265,40 +265,24 @@ nav {
 /* Products dropdown */
 .nav-dropdown { position: relative; }
 .nav-dropdown-trigger {
-  cursor: pointer;
-  display: flex; align-items: center; gap: 0.3rem;
+  cursor: pointer; display: flex; align-items: center; gap: 0.3rem;
+  font-size: var(--text-caption); font-weight: var(--weight-medium); color: var(--text-body);
 }
-.nav-dropdown-trigger::after {
-  content: '▾'; font-size: 0.65rem;
-}
+.nav-dropdown-trigger::after { content: '▾'; font-size: 0.65rem; }
 .nav-dropdown-menu {
-  display: none;
-  position: absolute; top: calc(100% + 0.75rem); left: -1rem;
-  background: white;
-  border: var(--border-default);
-  border-radius: var(--radius-lg);
-  padding: var(--space-sm) 0;
-  min-width: 200px;
-  box-shadow: var(--shadow-md);
+  display: none; position: absolute; top: 100%; left: -1rem; padding-top: 0.5rem;
   z-index: 100;
+}
+.nav-dropdown-menu-inner {
+  background: white; border: var(--border-default); border-radius: var(--radius-lg);
+  padding: var(--space-sm) 0; min-width: 200px; box-shadow: var(--shadow-md);
 }
 .nav-dropdown:hover .nav-dropdown-menu { display: block; }
 .nav-dropdown-menu a {
   display: flex; align-items: center; gap: var(--space-sm);
-  padding: 0.6rem 1.25rem;
-  font-size: var(--text-body-sm);
+  padding: 0.6rem 1.25rem; font-size: var(--text-body-sm);
 }
 .nav-dropdown-menu a:hover { background: var(--surface-off-white); }
-.dropdown-badge {
-  font-size: var(--text-nano);
-  font-weight: var(--weight-bold);
-  padding: 0.15rem 0.5rem;
-  border-radius: var(--radius-full);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-}
-.badge-live { background: var(--green-bg); color: var(--green); }
-.badge-soon { background: var(--surface-off-white); color: var(--text-secondary); }
 
 /* =============================================
    BUTTONS
@@ -799,22 +783,22 @@ footer {
 
 <!-- ===== NAV ===== -->
 <nav>
-  <a href="/" class="nav-logo"><div class="logo-mark">A</div> AutoMagic Labs</a>
+  <a href="index.html" class="nav-logo"><div class="logo-mark">A</div> AutoMagic Labs</a>
   <div class="nav-links">
-    <a href="/">Home</a>
-    <div class="nav-dropdown">
+    <a href="index.html">Home</a>
+        <div class="nav-dropdown">
       <a class="nav-dropdown-trigger">Products</a>
-      <div class="nav-dropdown-menu">
-        <a href="/ths">THS <span class="dropdown-badge badge-soon">New</span></a>
-        <a href="/vdp-audit">VDP Audit <span class="dropdown-badge badge-live">Live</span></a>
-        <a href="/vdp-boost">VDP Boost</a>
-        <a href="/turnsignal">TurnSignal™ <span class="dropdown-badge badge-soon">Coming Soon</span></a>
-      </div>
+      <div class="nav-dropdown-menu"><div class="nav-dropdown-menu-inner">
+        <a href="vdp-audit.html">VDP Audit</a>
+        <a href="vdp-boost.html">VDP Boost</a>
+        <a href="turnsignal.html">TurnSignal&#8482;</a>
+        <a href="ths.html">THS</a>
+      </div></div>
     </div>
-    <a href="/profit-wreck" class="nav-cta-link">Profit Wreck</a>
-    <a href="/team">Team</a>
-    <a href="/faq">FAQ</a>
-    <a href="/partner">Partner With Us</a>
+    <a href="profit-wreck.html" class="nav-cta-link">Profit Wreck</a>
+    <a href="team.html">Team</a>
+    <a href="faq.html">FAQ</a>
+    <a href="partner.html">Partner With Us</a>
   </div>
 </nav>
 
@@ -939,7 +923,7 @@ footer {
   <div class="faq-item"><div class="faq-q">What does the grade mean?</div><div class="faq-a">A+ through F, scored on feature completeness, trim accuracy, and marketplace consistency. A "C" doesn't mean failure — it means there's specific, fixable revenue hiding in your listing.</div></div>
   <div class="faq-item"><div class="faq-q">Can I audit my whole lot?</div><div class="faq-a">The free tool handles one VIN at a time. For full inventory audits, contact us at vdpaudit@automagiclabs.ai — we'll scope a pilot.</div></div>
   <div class="faq-item"><div class="faq-q">Why does this matter for AI shopping?</div><div class="faq-a">AI shopping agents compare vehicles by equipped value. An incomplete listing gets ranked below an identical vehicle with a complete VDP. Auditing now means your inventory is ready for both today's shoppers and tomorrow's AI agents.</div></div>
-  <div class="faq-item"><div class="faq-q">How accurate is the audit?</div><div class="faq-a">The VDP Audit works in two layers. First, we check trim accuracy &mdash; is the VIN represented as the correct vehicle in the lineup? Then we check feature completeness &mdash; are the high-value options actually showing in the listing? Both layers compare your live VDP against ChromeData&rsquo;s highest-grade VIN data. A vehicle can have 200 to 600 attributes. Most of them don&rsquo;t move a shopper. AML&rsquo;s Treasure Hunter Score ranks every feature by what shoppers actually care about &mdash; the Wow Factor features that create perceived value and differentiation. The audit doesn&rsquo;t just find what&rsquo;s missing. It finds what&rsquo;s missing that matters.</div></div>
+  <div class="faq-item"><div class="faq-q">How accurate is the audit?</div><div class="faq-a">The VDP Audit works in two layers. First, we check trim accuracy — is the VIN represented as the correct vehicle in the lineup? Then we check feature completeness — are the high-value options actually showing in the listing? Both layers compare your live VDP against ChromeData's highest-grade VIN data. A vehicle can have 200 to 600 attributes. Most of them don't move a shopper. AML's Treasure Hunter Score ranks every feature by what shoppers actually care about — the Wow Factor features that create perceived value and differentiation. The audit doesn't just find what's missing. It finds what's missing that matters.</div></div>
 </section>
 
 <!-- ===== FINAL CTA ===== -->
@@ -950,7 +934,9 @@ footer {
   <div class="final-cta-sub">Or email <a href="mailto:vdpaudit@automagiclabs.ai" style="color: var(--accent);">vdpaudit@automagiclabs.ai</a></div>
 </section>
 
-<footer>&copy; 2026 AutoMagic Labs. All rights reserved. &nbsp;|&nbsp; <a href="https://www.automagiclabs.ai" style="color: var(--accent);">automagiclabs.ai</a></footer>
+<footer>
+  <p>&copy; 2026 AutoMagic Labs. All rights reserved. &nbsp;|&nbsp; <a href="https://www.automagiclabs.ai" style="color: var(--accent);">automagiclabs.ai</a></p>
+</footer>
 
 </body>
 </html>
